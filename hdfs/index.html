@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="Lucy Linder (DAPLAB)">
+      
+      
+        <link rel="shortcut icon" href="../assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
+    
+    
+      
+        <title>HDFS - Workshop data sciences</title>
+      
+    
+    
+      <script src="../assets/javascripts/modernizr-e826f8942a.js"></script>
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application-a20f419c8e.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-23f75ab9c7.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../style.css">
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="blue" data-md-color-accent="orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Workshop data sciences" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+            
+            HDFS
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
+    Workshop data sciences
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        HDFS
+      </label>
+    
+    <a href="./" title="HDFS" class="md-nav__link md-nav__link--active">
+      HDFS
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" title="Resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-remarks-on-hdfs" title="Some remarks on HDFS" class="md-nav__link">
+    Some remarks on HDFS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdfs-architecture" title="HDFS architecture" class="md-nav__link">
+    HDFS architecture
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-manipulations" title="Basic Manipulations" class="md-nav__link">
+    Basic Manipulations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listing-your-home-folder" title="Listing your home folder" class="md-nav__link">
+    Listing your home folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-the-tmp-folder" title="Listing the /tmp folder" class="md-nav__link">
+    Listing the /tmp folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uploading-a-resource" title="Uploading a resource" class="md-nav__link">
+    Uploading a resource
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-a-resource" title="Downloading a resource" class="md-nav__link">
+    Downloading a resource
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-folder" title="Creating a folder" class="md-nav__link">
+    Creating a folder
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#removing-resources" title="Removing resources" class="md-nav__link">
+    Removing resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-manipulations" title="Advanced Manipulations" class="md-nav__link">
+    Advanced Manipulations
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../mapreduce/" title="MapReduce" class="md-nav__link">
+      MapReduce
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../hive/" title="Hive" class="md-nav__link">
+      Hive
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../zeppelin/" title="Hello Zeppelin" class="md-nav__link">
+      Hello Zeppelin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../spark/" title="Spark" class="md-nav__link">
+      Spark
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../lsa/" title="LSA" class="md-nav__link">
+      LSA
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" title="Resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-remarks-on-hdfs" title="Some remarks on HDFS" class="md-nav__link">
+    Some remarks on HDFS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdfs-architecture" title="HDFS architecture" class="md-nav__link">
+    HDFS architecture
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-manipulations" title="Basic Manipulations" class="md-nav__link">
+    Basic Manipulations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listing-your-home-folder" title="Listing your home folder" class="md-nav__link">
+    Listing your home folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-the-tmp-folder" title="Listing the /tmp folder" class="md-nav__link">
+    Listing the /tmp folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uploading-a-resource" title="Uploading a resource" class="md-nav__link">
+    Uploading a resource
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-a-resource" title="Downloading a resource" class="md-nav__link">
+    Downloading a resource
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-folder" title="Creating a folder" class="md-nav__link">
+    Creating a folder
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#removing-resources" title="Removing resources" class="md-nav__link">
+    Removing resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-manipulations" title="Advanced Manipulations" class="md-nav__link">
+    Advanced Manipulations
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>HDFS</h1>
+                
+                <p>In order to use HADOOP, it is crucial that you understand the basic functioning of HDFS, as well as some of its constraints.
+After a brief introduction of core HDFS concepts, this page presents <em>copy-paste</em>-like tutorial to familiarize with
+<a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html">HDFS commands</a>.
+It mainly focuses on user commands (uploading and downloading data into HDFS).</p>
+<h2 id="resources">Resources</h2>
+<p>While the source of truth for HDFS commands is the code source, the <a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html" target="_blank">documentation page describing the <code class="codehilite">hdfs dfs</code> commands</a> is really useful.</p>
+<p>A good and simpler cheat sheet is also available <a href="http://www.dummies.com/how-to/content/hadoop-for-dummies-cheat-sheet.html" target="_blank">here</a>.</p>
+<h2 id="introduction">Introduction</h2>
+<p>HDFS (<em>Hadoop Distributed File System</em>) is one of the core components of HADOOP.</p>
+<p>The HDFS is a distributed file system designed to run on commodity hardware. Very powerful,
+it should ensure that data are replicated across a wide variety of nodes, making the system
+fault tolerant and suitable for large data sets and gives high throughput.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To have a better understanding of how HDFS works, we strongly encourage you to check out <a href="https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html" target="_blank">the HDFS Architecture Guide</a>.</p>
+</div>
+<h3 id="some-remarks-on-hdfs">Some remarks on HDFS</h3>
+<p>HDFS uses a <strong>simple coherency model</strong>: applications mostly need a <em>write-once-read-many</em> access model for files. As a result, a file once created, written to and closed becomes read-only. It is possible to append to an HDFS file only if the system was explicitly configured to.</p>
+<p>HDFS is tuned to deal with <strong>large files</strong>. A typical file in HDFS is gigabytes to terabytes in size. As a result, try to avoid scattering your data in numerous small files.</p>
+<p>HDFS is designed more for <strong>batch processing</strong> rather than interactive use (high throughput versus low latency), and provides only sequential access of data. If your application has other needs, check out tools like <em>HBase</em>, <em>Hive</em>, <em>Apache Spark</em>, etc.</p>
+<blockquote>
+<p>“Moving Computation is Cheaper than Moving Data”</p>
+</blockquote>
+<h3 id="hdfs-architecture">HDFS architecture</h3>
+<p>As the <a href="https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html" target="_blank">the HDFS Architecture Guide</a> explains, HDFS has a <strong>master/slave architecture</strong>.</p>
+<p>An HDFS cluster consists of a single <strong>NameNode</strong>, a master server that manages the file system namespace and regulates access to files by clients. In addition, there are a number of <strong>DataNodes</strong>, usually one per node in the cluster, which manage storage attached to the nodes that they run on. HDFS exposes a file system namespace and allows user data to be stored in files. Internally, a file is split into one or more blocks and these blocks are stored in a set of DataNodes. The NameNode executes file system namespace operations like opening, closing, and renaming files and directories. It also determines the mapping of blocks to DataNodes. The DataNodes are responsible for serving read and write requests from the file system’s clients. The DataNodes also perform block creation, deletion, and replication upon instruction from the NameNode.</p>
+<p><img alt="HDFS architecture" src="../resources/hdfs-architecture.png" /></p>
+<hr />
+<h2 id="basic-manipulations">Basic Manipulations</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In HDFS, user's folders are stored in <code class="codehilite">/user</code> and not <code class="codehilite">/home</code> like traditional Unix/Linux filesystems.</p>
+</div>
+<h3 id="listing-your-home-folder">Listing your home folder</h3>
+<div class="codehilite"><pre><span></span> $ hdfs dfs -ls
+ Found <span class="m">28</span> items
+ ...
+ -rw-r--r--   <span class="m">3</span> llinder  daplab_users   <span class="m">6398990</span> <span class="m">2015</span>-03-13 <span class="m">11</span>:01 data.csv
+ ...
+ ^^^^^^^^^^   ^ ^^^^^^^^ ^^^^^^^^^^^^   ^^^^^^^ ^^^^^^^^^^ ^^^^^ ^^^^^^^^
+          <span class="m">1</span>   <span class="m">2</span>        <span class="m">3</span>            <span class="m">4</span>         <span class="m">5</span>          <span class="m">6</span>     <span class="m">7</span>        <span class="m">8</span>
+</pre></div>
+
+<p>Columns, as numbered below, represent:</p>
+<ol>
+<li>Permissions, in <a href="http://en.wikipedia.org/wiki/File_system_permissions#Notation_of_traditional_Unix_permissions unix-style" target="_blank">traditional unix permission</a> syntax;</li>
+<li>Replication factor, <em>RF</em> in short. The RF default to 3 for a file and 0 for a directory; </li>
+<li>Owner (you!);</li>
+<li>Group owning the file;</li>
+<li>Size of the file, in bytes. Note that to compute the physical space used, this number should be multiplied by the RF;</li>
+<li>Modification date. As HDFS being mostly a ''<a href="http://en.wikipedia.org/wiki/Write_once_read_many" target="_blank">write-once-read-many</a>'' filesystem,
+this date often means creation date;</li>
+<li>Modification time. Same as date;</li>
+<li>Filename, within the listed folder.</li>
+</ol>
+<h3 id="listing-the-tmp-folder">Listing the <code class="codehilite">/tmp</code> folder</h3>
+<p>The only change is that you specify an absolute path from the root of the filesystem (<code class="codehilite">/</code>):
+<div class="codehilite"><pre><span></span>hdfs dfs -ls /tmp
+</pre></div></p>
+<h3 id="uploading-a-resource">Uploading a resource</h3>
+<p>To put a file to HDFS, you have two choices. You can use <code class="codehilite">hdfs</code> with the <code class="codehilite">-put</code> option or with the <code class="codehilite">-copyFromLocal</code> option:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># uploading a file</span>
+hdfs dfs -put localfile.txt /tmp
+hdfs dfs -copyFromLocal localfile.txt /tmp/
+<span class="c1"># uploading a directory </span>
+hdfs dfs -put localdir /tmp
+hdfs dfs -copyFromLocal localdir /tmp/
+</pre></div>
+
+<p>The first arguments after <code class="codehilite">-copyFromLocal</code> or <code class="codehilite">-put</code> point to local files or folders, while the last argument is a file (if only one file listed as source) or directory in HDFS. Note that you can use wildcards and also rename files and folders when copying, exactly as you would do in a linux shell:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># uploading all files in the current directory with the .txt extension</span>
+hdfs dfs -put *.txt /tmp
+hdfs dfs -copyFromLocal *.txt /tmp/
+<span class="c1"># uploading a directory and renaming it hdfsdir</span>
+hdfs dfs -put localdir /tmp/hdfsdir
+hdfs dfs -copyFromLocal localdir /tmp/hdfsdir
+</pre></div>
+
+<p>Both options are doing about the same thing, but <code class="codehilite">-copyFromLocal</code> is more explicit when you're uploading a local file and thus preferred.</p>
+<h3 id="downloading-a-resource">Downloading a resource</h3>
+<p>Download is the same as uploading, but <code class="codehilite">-put</code> becomes <code class="codehilite">-get</code> and <code class="codehilite">-copyFromLocal</code> becomes <code class="codehilite">-copyToLocal</code>:</p>
+<div class="codehilite"><pre><span></span>hdfs dfs -get /tmp/remotefile.txt .
+hdfs dfs -copyToLocal /tmp/remotefile.txt .
+</pre></div>
+
+<h2 id="creating-a-folder">Creating a folder</h2>
+<p>To create a folder, use <code class="codehilite">-mkdir</code></p>
+<div class="codehilite"><pre><span></span><span class="c1"># create a folder in your hdfs home</span>
+hdfs dfs -mkdir dummy-folder
+<span class="c1"># create a folder in /tmp</span>
+hdfs dfs -mkdir /tmp/dummy-folder
+</pre></div>
+
+<p>Note that relative paths points to your home folder,  <code class="codehilite">/user/llinder</code> for instance.</p>
+<h3 id="removing-resources">Removing resources</h3>
+<p>To remove individual files, use the <code class="codehilite">-rm</code> option:</p>
+<div class="codehilite"><pre><span></span>hdfs dfs -rm /tmp/somefile.txt
+</pre></div>
+
+<p>To remove a folder, the option is <code class="codehilite">-rmdir</code> for an empty directory and <code class="codehilite">-rm -r</code> for a non-empty one. The <code class="codehilite">-r</code> in <code class="codehilite">-rm -r</code> means <em>recursive</em>: it removes the folder and all its children recursively:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># remove the dummy-folder in your home</span>
+hdfs dfs -rmdir dummy-folder
+rmdir: <span class="s1">&#39;/tmp/lala&#39;</span>: Directory is not empty
+<span class="c1"># oups, the directory is not empty... use -rm -r</span>
+hdfs dfs -rm -r dummy-folder
+</pre></div>
+
+<h2 id="advanced-manipulations">Advanced Manipulations</h2>
+<p>the <code class="codehilite">hdfs dfs</code> command support several actions that any linux user is already familiar with. Most of their parameters are the same, but note that the collapsing of options (<code class="codehilite">-rf</code> instead of <code class="codehilite">-r -f</code> for example) are not supported. Here is a non-exhaustive list:</p>
+<ul>
+<li><code class="codehilite">-rm [-r] [-f]</code>: remove a file or directory;</li>
+<li><code class="codehilite">-cp [-r]</code>: copy a file or directory;</li>
+<li><code class="codehilite">-mv</code>: move/rename a file or directory;</li>
+<li><code class="codehilite">-cat</code>: display the content of a file;</li>
+<li><code class="codehilite">-chmod</code>: manipulate file permissions;</li>
+<li><code class="codehilite">-chown</code>: manipulate file ownership;</li>
+<li><code class="codehilite">-tail|-touch|</code>etc.</li>
+</ul>
+<p>Other useful commands include:</p>
+<ul>
+<li><code class="codehilite">-moveFromLocal|-moveToLocal</code>: same as <code class="codehilite">-copyFromLocal|-copyToLocal</code>, but remove the source;</li>
+<li><code class="codehilite">-stat</code>: display information about the specified path;</li>
+<li><code class="codehilite">-count</code>: counts the number of directories, files, and bytes under the paths;</li>
+<li><code class="codehilite">-du</code>: display the size of the specified file, or the sizes of files and directories that are contained in the specified directory;</li>
+<li><code class="codehilite">-dus</code>: display a summary of the file sizes;</li>
+<li><code class="codehilite">-getmerge</code>: concatenate the files in src and writes the result to the specified local destination file. To add a newline character at the end of each file, specify the <code class="codehilite">addnl</code> option: <code class="codehilite">hdfs dfs -getmerge &lt;src&gt; &lt;localdst&gt; [addnl]</code></li>
+<li><code class="codehilite">-setrep [-R]</code>: change the replication factor for a specified file or directory;</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../mapreduce/" title="MapReduce" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                MapReduce
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017 DAPLAB & UNIFR
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application-f3ab9e5ff8.js"></script>
+      
+      
+      <script>app.initialize({url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>

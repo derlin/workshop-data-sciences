@@ -18,7 +18,7 @@
     
     
       
-        <title>Zeppelin - Workshop data sciences</title>
+        <title>Hello Zeppelin - Workshop data sciences</title>
       
     
     
@@ -80,7 +80,7 @@
             
               
             
-            Zeppelin
+            Hello Zeppelin
           
         </span>
       </div>
@@ -153,6 +153,42 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../hdfs/" title="HDFS" class="md-nav__link">
+      HDFS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../mapreduce/" title="MapReduce" class="md-nav__link">
+      MapReduce
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../hive/" title="Hive" class="md-nav__link">
+      Hive
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -164,11 +200,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Zeppelin
+        Hello Zeppelin
       </label>
     
-    <a href="./" title="Zeppelin" class="md-nav__link md-nav__link--active">
-      Zeppelin
+    <a href="./" title="Hello Zeppelin" class="md-nav__link md-nav__link--active">
+      Hello Zeppelin
     </a>
     
       
@@ -215,6 +251,30 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../spark/" title="Spark" class="md-nav__link">
+      Spark
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../lsa/" title="LSA" class="md-nav__link">
+      LSA
+    </a>
   </li>
 
     
@@ -281,7 +341,8 @@
               
                 
                 
-                <p>Apache Zeppelin is an online notebook that let you interact with the DAPLAB cluster through many languages and technology backends. Currently, Zeppelin supports:</p>
+                <p>Apache Zeppelin is an online notebook that let you interact with the DAPLAB cluster (or any other hadoop/spark installation) through many languages and technology backends. </p>
+<p>Currently, Zeppelin on the DAPLAB supports:</p>
 <ul>
 <li>Spark 1.6 and Spark 2.1.0 using python, scala or R</li>
 <li>Hive</li>
@@ -290,15 +351,23 @@
 </ul>
 <h1 id="getting-started">Getting Started</h1>
 <h2 id="login">Login</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you are running a dockerized version of zeppelin, you can stay anonymous
+and thus skip this step.</p>
+</div>
 <ol>
 <li>Go to <a href="https://zeppelin.daplab.ch">Zeppelin</a></li>
 <li>Login using your daplab credentials</li>
 </ol>
 <h2 id="create-a-new-notebook">Create a new notebook</h2>
-<p>On the home page or on the notebook menu, select "<em>create new...</em>". Once the notebook is open, give it a new name.</p>
-<p class="vscc-notify-info">Using slashes (<code class="codehilite">/</code>) in the notebook name will automatically create and/or move the notebook into folders.</p>
+<p>On the home page or on the notebook menu, select "<em>create new...</em>". Once the notebook is opened, give it a new name.</p>
+<div class="admonition tips">
+<p class="admonition-title">Creating folders</p>
+<p>Using slashes (<code class="codehilite">/</code>) in the notebook name will automatically create and/or move the notebook into folders.</p>
+</div>
 <h2 id="basics">Basics</h2>
-<p>A notebook is made of <em>cells</em>, also called <em>paragraphs</em>. A Cell has an <em>interpreter</em> that tells Zeppelin which langage/backend to use to run the cell.</p>
+<p>A notebook is made of <em>cells</em>, also called <em>paragraphs</em>. A cell has an <em>interpreter</em> that tells Zeppelin which langage/backend to use to run the cell.</p>
 <p>The interpreter is configured by writing <code class="codehilite"><span class="c">%&lt;interpreter name&gt;</span></code> at the top of the cell. Without it, Zeppelin will use the default interpreter, which you can configure by clicking on <i class="fa fa-cog" aria-hidden="true"></i> <em>&gt; interpreters</em> at the top right of the notebook (drag-drop to re-order them, the first one being the default).</p>
 <p>You can run cells by clicking on the <i class="fa fa-play" aria-hidden="true"></i> icon on the right or using <code class="codehilite">shift+enter</code>. </p>
 <p class="vscc-notify-info">Many useful shortcuts exist in edit mode. Click on <i class="fa fa-keyboard-o" aria-hidden="true"></i> the at the top right of a notebook to display them.</p>
@@ -343,7 +412,7 @@
 </table>
 <p><em>Note</em>: <code class="codehilite">spark</code> is Spark 1.6, <code class="codehilite">spark2</code> is Spark 2.1.0.</p>
 <h1 id="battling-with-spark">Battling with spark</h1>
-<p>Let's use our <code class="codehilite">battling.csv</code> example from the <a href="hive.md">hive</a> and <a href="pig.md">pig</a> tutorials. </p>
+<p>Let's use our <code class="codehilite">battling.csv</code> example from the <a href="https://docs.daplab.ch/tutorials/hive/" target="_blank">hive</a> and <a href="https://docs.daplab.ch/tutorials/pig/" target="_blank">pig</a>  tutorials. </p>
 <h3 id="include-spark-csv">Include Spark CSV</h3>
 <p>First, we need an external library to easily read the CSV. On the first cell, enter and run:</p>
 <div class="codehilite"><pre><span></span><span class="nf">%dep</span>
@@ -386,19 +455,26 @@ z.show(statsPerYear)
 </pre></div>
 
 <p>On the interface, select the line chart <i class="fa fa-line-chart" aria-hidden="true"></i> or area chart <i class="fa fa-area-chart" aria-hidden="true"></i> and then click on <em>settings</em>. Drag-and-drop the statistics into the <em>Values</em> area:</p>
-<p><img alt="Batting with Zeppelin - statistics per year" src="../../images/zeppelin-batting-graph.png" /></p>
+<p><img alt="Batting with Zeppelin - statistics per year" src="../resources/zeppelin-batting-graph.png" /></p>
 <p><strong>Use an input form</strong> to display the hit by pitch per team for a given year:</p>
-<div class="codehilite"><pre><span></span># z.input(&lt;input name&gt;, &lt;default value&gt;)
-val year = z.input(&quot;year&quot;, 1894)
-val hbp1894 = batting.filter($&quot;yearID&quot; === year).groupBy(&quot;teamID&quot;).agg(sum(&quot;HBP&quot;).alias(&quot;hit by pitch&quot;))
-z.show(hbp1894)
+<div class="codehilite"><pre><span></span><span class="k">#</span> <span class="n">z</span><span class="o">.</span><span class="n">input</span><span class="o">(&lt;</span><span class="n">input</span> <span class="n">name</span><span class="o">&gt;,</span> <span class="o">&lt;</span><span class="n">default</span> <span class="n">value</span><span class="o">&gt;)</span>
+<span class="k">val</span> <span class="n">year</span> <span class="k">=</span> <span class="n">z</span><span class="o">.</span><span class="n">input</span><span class="o">(</span><span class="s">&quot;year&quot;</span><span class="o">,</span> <span class="mi">1894</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">hbp1894</span> <span class="k">=</span> <span class="n">batting</span>
+    <span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">$</span><span class="s">&quot;yearID&quot;</span> <span class="o">===</span> <span class="n">year</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">groupBy</span><span class="o">(</span><span class="s">&quot;teamID&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="o">(</span><span class="n">sum</span><span class="o">(</span><span class="s">&quot;HBP&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">alias</span><span class="o">(</span><span class="s">&quot;hit by pitch&quot;</span><span class="o">))</span>
+<span class="n">z</span><span class="o">.</span><span class="n">show</span><span class="o">(</span><span class="n">hbp1894</span><span class="o">)</span>
 </pre></div>
 
 <p><code class="codehilite">z.input</code> creates a simple input text. Use <code class="codehilite">z.select</code> for a dropdown and <code class="codehilite">z.checkbox</code> for multiple choices. For example, a dropdown for all teams would be:</p>
-<div class="codehilite"><pre><span></span>// get all team names
-val all_teams = batting.select(&quot;teamID&quot;).distinct().map(_.getAs[String](0)).collect()
-// create and show a dropdown form
-val team = z.select(&quot;selected team&quot;, all_teams.zip(all_teams).sorted)
+<div class="codehilite"><pre><span></span><span class="c1">// get all team names</span>
+<span class="k">val</span> <span class="n">all_teams</span> <span class="k">=</span> <span class="n">batting</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">&quot;teamID&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">distinct</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">getAs</span><span class="o">[</span><span class="kt">String</span><span class="o">](</span><span class="mi">0</span><span class="o">))</span>
+    <span class="o">.</span><span class="n">collect</span><span class="o">()</span>
+<span class="c1">// create and show a dropdown form</span>
+<span class="k">val</span> <span class="n">team</span> <span class="k">=</span> <span class="n">z</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="s">&quot;selected team&quot;</span><span class="o">,</span> <span class="n">all_teams</span><span class="o">.</span><span class="n">zip</span><span class="o">(</span><span class="n">all_teams</span><span class="o">).</span><span class="n">sorted</span><span class="o">)</span>
 </pre></div>
 
 <p>More dynamic forms <a href="https://zeppelin.apache.org/docs/latest/manual/dynamicform.html" target="_blank">in the documentation</a>.</p>
@@ -420,7 +496,7 @@ val team = z.select(&quot;selected team&quot;, all_teams.zip(all_teams).sorted)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../hive/" title="Hive" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -429,11 +505,25 @@ val team = z.select(&quot;selected team&quot;, all_teams.zip(all_teams).sorted)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                Hive
               </span>
             </div>
           </a>
         
+        
+          <a href="../spark/" title="Spark" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Spark
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

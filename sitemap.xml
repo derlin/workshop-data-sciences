@@ -11,7 +11,47 @@
 
     
     <url>
+     <loc>/hdfs/</loc>
+     <lastmod>2017-10-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/mapreduce/</loc>
+     <lastmod>2017-10-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/hive/</loc>
+     <lastmod>2017-10-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
      <loc>/zeppelin/</loc>
+     <lastmod>2017-10-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/spark/</loc>
+     <lastmod>2017-10-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/lsa/</loc>
      <lastmod>2017-10-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
