@@ -7,7 +7,14 @@ site_author: "Lucy Linder (DAPLAB)"
 
 pages:
     - index.md
-    - zeppelin.md
+    # day 1
+    - HDFS: hdfs.md
+    - MapReduce: mapreduce.md
+    - Hive: hive.md
+    # day 2
+    - Hello Zeppelin: zeppelin.md
+    - Spark: spark.md 
+    - LSA: lsa.md
 
 # ----------------------
 

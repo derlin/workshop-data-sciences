@@ -1,4 +1,8 @@
-Apache Zeppelin is an online notebook that let you interact with the DAPLAB cluster through many languages and technology backends. Currently, Zeppelin supports:
+TODO: redo the same kind of things in python !
+
+Apache Zeppelin is an online notebook that let you interact with the DAPLAB cluster (or any other hadoop/spark installation) through many languages and technology backends. 
+
+Currently, Zeppelin on the DAPLAB supports:
 
 * Spark 1.6 and Spark 2.1.0 using python, scala or R
 * Hive
@@ -9,19 +13,23 @@ Apache Zeppelin is an online notebook that let you interact with the DAPLAB clus
 
 ## Login
 
+!!! Info
+    If you are running a dockerized version of zeppelin, you can stay anonymous
+    and thus skip this step.
+
 1. Go to [Zeppelin](https://zeppelin.daplab.ch)
 2. Login using your daplab credentials
 
 ## Create a new notebook
 
-On the home page or on the notebook menu, select "_create new..._". Once the notebook is open, give it a new name.
+On the home page or on the notebook menu, select "_create new..._". Once the notebook is opened, give it a new name.
 
-Using slashes (`/`) in the notebook name will automatically create and/or move the notebook into folders.
-{: .vscc-notify-info }
+!!! tips "Creating folders"
+    Using slashes (`/`) in the notebook name will automatically create and/or move the notebook into folders.
 
 ## Basics
 
-A notebook is made of _cells_, also called _paragraphs_. A Cell has an _interpreter_ that tells Zeppelin which langage/backend to use to run the cell.
+A notebook is made of _cells_, also called _paragraphs_. A cell has an _interpreter_ that tells Zeppelin which langage/backend to use to run the cell.
 
 The interpreter is configured by writing `%<interpreter name>` at the top of the cell. Without it, Zeppelin will use the default interpreter, which you can configure by clicking on <i class="fa fa-cog" aria-hidden="true"></i> _> interpreters_ at the top right of the notebook (drag-drop to re-order them, the first one being the default).
 
@@ -47,7 +55,7 @@ _Note_: `spark` is Spark 1.6, `spark2` is Spark 2.1.0.
 
 # Battling with spark
 
-Let's use our `battling.csv` example from the [hive](hive.md) and [pig](pig.md) tutorials. 
+Let's use our `battling.csv` example from the [hive](https://docs.daplab.ch/tutorials/hive/){: target="_blank"} and [pig](https://docs.daplab.ch/tutorials/pig/){: target="_blank"}  tutorials. 
 
 ### Include Spark CSV
 
@@ -107,22 +115,29 @@ z.show(statsPerYear)
 
 On the interface, select the line chart <i class="fa fa-line-chart" aria-hidden="true"></i> or area chart <i class="fa fa-area-chart" aria-hidden="true"></i> and then click on _settings_. Drag-and-drop the statistics into the _Values_ area:
 
-![Batting with Zeppelin - statistics per year](../images/zeppelin-batting-graph.png)
+![Batting with Zeppelin - statistics per year](resources/zeppelin-batting-graph.png)
 
 __Use an input form__ to display the hit by pitch per team for a given year:
 
-```
+```scala
 # z.input(<input name>, <default value>)
 val year = z.input("year", 1894)
-val hbp1894 = batting.filter($"yearID" === year).groupBy("teamID").agg(sum("HBP").alias("hit by pitch"))
+val hbp1894 = batting
+    .filter($"yearID" === year)
+    .groupBy("teamID")
+    .agg(sum("HBP")
+    .alias("hit by pitch"))
 z.show(hbp1894)
 ```
 
 `z.input` creates a simple input text. Use `z.select` for a dropdown and `z.checkbox` for multiple choices. For example, a dropdown for all teams would be:
 
-```
+```scala
 // get all team names
-val all_teams = batting.select("teamID").distinct().map(_.getAs[String](0)).collect()
+val all_teams = batting.select("teamID")
+    .distinct()
+    .map(_.getAs[String](0))
+    .collect()
 // create and show a dropdown form
 val team = z.select("selected team", all_teams.zip(all_teams).sorted)
 ```
