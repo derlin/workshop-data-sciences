@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="Lucy Linder (DAPLAB)">
+      
+      
+        <link rel="shortcut icon" href="../assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
+    
+    
+      
+        <title>Zeppelin - Workshop data sciences</title>
+      
+    
+    
+      <script src="../assets/javascripts/modernizr-e826f8942a.js"></script>
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application-a20f419c8e.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-23f75ab9c7.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../style.css">
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="blue" data-md-color-accent="orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Workshop data sciences" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon md-icon--home"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+            
+            Zeppelin
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result" data-md-lang-search="" data-md-lang-tokenizer="[\s\-]+">
+          <div class="md-search-result__meta" data-md-lang-result-none="No matching documents" data-md-lang-result-one="1 matching document" data-md-lang-result-other="# matching documents">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <div class="md-nav__button md-logo">
+      
+        <i class="md-icon md-icon--home"></i>
+      
+    </div>
+    Workshop data sciences
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Zeppelin
+      </label>
+    
+    <a href="./" title="Zeppelin" class="md-nav__link md-nav__link--active">
+      Zeppelin
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#login" title="Login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-new-notebook" title="Create a new notebook" class="md-nav__link">
+    Create a new notebook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basics" title="Basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-interpreter-prefixes" title="List of interpreter prefixes" class="md-nav__link">
+    List of interpreter prefixes
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#login" title="Login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-new-notebook" title="Create a new notebook" class="md-nav__link">
+    Create a new notebook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basics" title="Basics" class="md-nav__link">
+    Basics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-interpreter-prefixes" title="List of interpreter prefixes" class="md-nav__link">
+    List of interpreter prefixes
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <p>Apache Zeppelin is an online notebook that let you interact with the DAPLAB cluster through many languages and technology backends. Currently, Zeppelin supports:</p>
+<ul>
+<li>Spark 1.6 and Spark 2.1.0 using python, scala or R</li>
+<li>Hive</li>
+<li>MarkDown</li>
+<li>Shell</li>
+</ul>
+<h1 id="getting-started">Getting Started</h1>
+<h2 id="login">Login</h2>
+<ol>
+<li>Go to <a href="https://zeppelin.daplab.ch">Zeppelin</a></li>
+<li>Login using your daplab credentials</li>
+</ol>
+<h2 id="create-a-new-notebook">Create a new notebook</h2>
+<p>On the home page or on the notebook menu, select "<em>create new...</em>". Once the notebook is open, give it a new name.</p>
+<p class="vscc-notify-info">Using slashes (<code class="codehilite">/</code>) in the notebook name will automatically create and/or move the notebook into folders.</p>
+<h2 id="basics">Basics</h2>
+<p>A notebook is made of <em>cells</em>, also called <em>paragraphs</em>. A Cell has an <em>interpreter</em> that tells Zeppelin which langage/backend to use to run the cell.</p>
+<p>The interpreter is configured by writing <code class="codehilite"><span class="c">%&lt;interpreter name&gt;</span></code> at the top of the cell. Without it, Zeppelin will use the default interpreter, which you can configure by clicking on <i class="fa fa-cog" aria-hidden="true"></i> <em>&gt; interpreters</em> at the top right of the notebook (drag-drop to re-order them, the first one being the default).</p>
+<p>You can run cells by clicking on the <i class="fa fa-play" aria-hidden="true"></i> icon on the right or using <code class="codehilite">shift+enter</code>. </p>
+<p class="vscc-notify-info">Many useful shortcuts exist in edit mode. Click on <i class="fa fa-keyboard-o" aria-hidden="true"></i> the at the top right of a notebook to display them.</p>
+<h2 id="list-of-interpreter-prefixes">List of interpreter prefixes</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Prefix</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code class="codehilite"><span class="nf">%spark</span></code>, <code class="codehilite"><span class="nf">%spark2</span></code></td>
+<td align="left">Spark with Scala</td>
+</tr>
+<tr>
+<td align="left"><code class="codehilite"><span class="nf">%spark</span><span class="p">.</span><span class="n">sql</span></code>, <code class="codehilite"><span class="nf">%spark2</span><span class="p">.</span><span class="n">sql</span></code></td>
+<td align="left">Spark SQL syntax</td>
+</tr>
+<tr>
+<td align="left"><code class="codehilite"><span class="nf">%spark</span><span class="p">.</span><span class="n">dep</span></code>, <code class="codehilite"><span class="nf">%spark2</span><span class="p">.</span><span class="n">dep</span></code></td>
+<td align="left">Load dependencies for use within Spark cells</td>
+</tr>
+<tr>
+<td align="left"><code class="codehilite"><span class="nf">%spark</span><span class="p">.</span><span class="n">pyspark</span></code>, <code class="codehilite"><span class="nf">%spark2</span><span class="p">.</span><span class="n">pyspark</span></code></td>
+<td align="left">Spark with Python</td>
+</tr>
+<tr>
+<td align="left"><code class="codehilite"><span class="nf">%md</span></code></td>
+<td align="left">MarkDown cell</td>
+</tr>
+<tr>
+<td align="left"><code class="codehilite"><span class="nf">%sh</span></code></td>
+<td align="left">shell scripts</td>
+</tr>
+<tr>
+<td align="left"><code class="codehilite"><span class="nf">%jdbc</span><span class="p">(</span><span class="n">hive</span><span class="p">)</span></code></td>
+<td align="left">Hive</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note</em>: <code class="codehilite">spark</code> is Spark 1.6, <code class="codehilite">spark2</code> is Spark 2.1.0.</p>
+<h1 id="battling-with-spark">Battling with spark</h1>
+<p>Let's use our <code class="codehilite">battling.csv</code> example from the <a href="hive.md">hive</a> and <a href="pig.md">pig</a> tutorials. </p>
+<h3 id="include-spark-csv">Include Spark CSV</h3>
+<p>First, we need an external library to easily read the CSV. On the first cell, enter and run:</p>
+<div class="codehilite"><pre><span></span><span class="nf">%dep</span>
+<span class="n">z</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">&quot;com.databricks:spark-csv_2.11:1.5.0&quot;</span><span class="p">)</span>
+</pre></div>
+
+<p><code class="codehilite"><span class="nf">%dep</span></code> is used to manage dependencies. Have a look <a href="https://zeppelin.apache.org/docs/latest/interpreter/spark.html#3-dynamic-dependency-loading-via-sparkdep-interpreter" target="_blank">here</a> for more information. </p>
+<p>If you run into the error:</p>
+<div class="codehilite"><pre><span></span>Must be used before SparkInterpreter (%spark) initialized
+Hint: put this paragraph before any Spark code and restart Zeppelin/Interpreter
+</pre></div>
+
+<p>Open the interpretor's list (<i class="fa fa-cog" aria-hidden="true"></i> <em>&gt; interpreters</em> on the top right) and click on the <i class="fa fa-refresh" aria-hidden="true"></i> icon on the left of the <code class="codehilite">spark2</code> interpreter.</p>
+<h3 id="load-data">Load Data</h3>
+<div class="codehilite"><pre><span></span><span class="nf">%spark2</span>
+<span class="n">val</span> <span class="n">battingFile</span> <span class="o">=</span> <span class="s">&quot;hdfs:///shared/seanlahman/2011/Batting/Batting.csv&quot;</span>
+<span class="n">val</span> <span class="n">batting</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="p">.</span><span class="n">read</span>
+    <span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="s">&quot;com.databricks.spark.csv&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">option</span><span class="p">(</span><span class="s">&quot;header&quot;</span><span class="p">,</span> <span class="s">&quot;true&quot;</span><span class="p">)</span> <span class="c1">// Use first line of all files as header</span>
+    <span class="p">.</span><span class="n">option</span><span class="p">(</span><span class="s">&quot;inferSchema&quot;</span><span class="p">,</span> <span class="s">&quot;true&quot;</span><span class="p">)</span> <span class="c1">// Automatically infer data types</span>
+    <span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">battingFile</span><span class="p">)</span>
+</pre></div>
+
+<h3 id="visualizing">Visualizing</h3>
+<p>First, have a <strong>look at the data:</strong></p>
+<div class="codehilite"><pre><span></span><span class="nf">%spark2</span>
+<span class="n">z</span><span class="p">.</span><span class="n">show</span><span class="p">(</span><span class="n">batting</span><span class="p">)</span>
+</pre></div>
+
+<p><em>NOTE</em> : <code class="codehilite">z.show</code> is a zeppelin builtin that allows you to display values inside a variable. The interface let's you switch between views, such as table, piechart, etc.</p>
+<p><strong>Compute some statistics per year</strong>: </p>
+<div class="codehilite"><pre><span></span>val statsPerYear = batting
+    .groupBy($&quot;yearID&quot;)
+    .agg(
+        sum(&quot;R&quot;).alias(&quot;total runs&quot;),
+        sum(&quot;H&quot;).alias(&quot;total hits&quot;), 
+        sum(&quot;G&quot;).alias(&quot;total games&quot;))
+
+z.show(statsPerYear)
+</pre></div>
+
+<p>On the interface, select the line chart <i class="fa fa-line-chart" aria-hidden="true"></i> or area chart <i class="fa fa-area-chart" aria-hidden="true"></i> and then click on <em>settings</em>. Drag-and-drop the statistics into the <em>Values</em> area:</p>
+<p><img alt="Batting with Zeppelin - statistics per year" src="../../images/zeppelin-batting-graph.png" /></p>
+<p><strong>Use an input form</strong> to display the hit by pitch per team for a given year:</p>
+<div class="codehilite"><pre><span></span># z.input(&lt;input name&gt;, &lt;default value&gt;)
+val year = z.input(&quot;year&quot;, 1894)
+val hbp1894 = batting.filter($&quot;yearID&quot; === year).groupBy(&quot;teamID&quot;).agg(sum(&quot;HBP&quot;).alias(&quot;hit by pitch&quot;))
+z.show(hbp1894)
+</pre></div>
+
+<p><code class="codehilite">z.input</code> creates a simple input text. Use <code class="codehilite">z.select</code> for a dropdown and <code class="codehilite">z.checkbox</code> for multiple choices. For example, a dropdown for all teams would be:</p>
+<div class="codehilite"><pre><span></span>// get all team names
+val all_teams = batting.select(&quot;teamID&quot;).distinct().map(_.getAs[String](0)).collect()
+// create and show a dropdown form
+val team = z.select(&quot;selected team&quot;, all_teams.zip(all_teams).sorted)
+</pre></div>
+
+<p>More dynamic forms <a href="https://zeppelin.apache.org/docs/latest/manual/dynamicform.html" target="_blank">in the documentation</a>.</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2017 DAPLAB & UNIFR
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application-f3ab9e5ff8.js"></script>
+      
+      
+      <script>app.initialize({url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>

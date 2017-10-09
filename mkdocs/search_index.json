@@ -1,0 +1,59 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "Welcome to the datasciences workshop !",
+            "title": "Home"
+        },
+        {
+            "location": "/zeppelin/",
+            "text": "Apache Zeppelin is an online notebook that let you interact with the DAPLAB cluster through many languages and technology backends. Currently, Zeppelin supports:\n\n\n\n\nSpark 1.6 and Spark 2.1.0 using python, scala or R\n\n\nHive\n\n\nMarkDown\n\n\nShell\n\n\n\n\nGetting Started\n\n\nLogin\n\n\n\n\nGo to \nZeppelin\n\n\nLogin using your daplab credentials\n\n\n\n\nCreate a new notebook\n\n\nOn the home page or on the notebook menu, select \"\ncreate new...\n\". Once the notebook is open, give it a new name.\n\n\nUsing slashes (\n/\n) in the notebook name will automatically create and/or move the notebook into folders.\n\n\nBasics\n\n\nA notebook is made of \ncells\n, also called \nparagraphs\n. A Cell has an \ninterpreter\n that tells Zeppelin which langage/backend to use to run the cell.\n\n\nThe interpreter is configured by writing \n%<interpreter name>\n at the top of the cell. Without it, Zeppelin will use the default interpreter, which you can configure by clicking on \n \n> interpreters\n at the top right of the notebook (drag-drop to re-order them, the first one being the default).\n\n\nYou can run cells by clicking on the \n icon on the right or using \nshift+enter\n. \n\n\nMany useful shortcuts exist in edit mode. Click on \n the at the top right of a notebook to display them.\n\n\nList of interpreter prefixes\n\n\n\n\n\n\n\n\nPrefix\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\n%spark\n, \n%spark2\n\n\nSpark with Scala\n\n\n\n\n\n\n%spark\n.\nsql\n, \n%spark2\n.\nsql\n\n\nSpark SQL syntax\n\n\n\n\n\n\n%spark\n.\ndep\n, \n%spark2\n.\ndep\n\n\nLoad dependencies for use within Spark cells\n\n\n\n\n\n\n%spark\n.\npyspark\n, \n%spark2\n.\npyspark\n\n\nSpark with Python\n\n\n\n\n\n\n%md\n\n\nMarkDown cell\n\n\n\n\n\n\n%sh\n\n\nshell scripts\n\n\n\n\n\n\n%jdbc\n(\nhive\n)\n\n\nHive\n\n\n\n\n\n\n\n\nNote\n: \nspark\n is Spark 1.6, \nspark2\n is Spark 2.1.0.\n\n\nBattling with spark\n\n\nLet's use our \nbattling.csv\n example from the \nhive\n and \npig\n tutorials. \n\n\nInclude Spark CSV\n\n\nFirst, we need an external library to easily read the CSV. On the first cell, enter and run:\n\n\n%dep\n\n\nz\n.\nload\n(\n\"com.databricks:spark-csv_2.11:1.5.0\"\n)\n\n\n\n\n\n%dep\n is used to manage dependencies. Have a look \nhere\n for more information. \n\n\nIf you run into the error:\n\n\nMust be used before SparkInterpreter (%spark) initialized\nHint: put this paragraph before any Spark code and restart Zeppelin/Interpreter\n\n\n\n\nOpen the interpretor's list (\n \n> interpreters\n on the top right) and click on the \n icon on the left of the \nspark2\n interpreter.\n\n\nLoad Data\n\n\n%spark2\n\n\nval\n \nbattingFile\n \n=\n \n\"hdfs:///shared/seanlahman/2011/Batting/Batting.csv\"\n\n\nval\n \nbatting\n \n=\n \nsqlContext\n.\nread\n\n    \n.\nformat\n(\n\"com.databricks.spark.csv\"\n)\n\n    \n.\noption\n(\n\"header\"\n,\n \n\"true\"\n)\n \n// Use first line of all files as header\n\n    \n.\noption\n(\n\"inferSchema\"\n,\n \n\"true\"\n)\n \n// Automatically infer data types\n\n    \n.\nload\n(\nbattingFile\n)\n\n\n\n\n\nVisualizing\n\n\nFirst, have a \nlook at the data:\n\n\n%spark2\n\n\nz\n.\nshow\n(\nbatting\n)\n\n\n\n\n\nNOTE\n : \nz.show\n is a zeppelin builtin that allows you to display values inside a variable. The interface let's you switch between views, such as table, piechart, etc.\n\n\nCompute some statistics per year\n: \n\n\nval statsPerYear = batting\n    .groupBy($\"yearID\")\n    .agg(\n        sum(\"R\").alias(\"total runs\"),\n        sum(\"H\").alias(\"total hits\"), \n        sum(\"G\").alias(\"total games\"))\n\nz.show(statsPerYear)\n\n\n\n\nOn the interface, select the line chart \n or area chart \n and then click on \nsettings\n. Drag-and-drop the statistics into the \nValues\n area:\n\n\n\n\nUse an input form\n to display the hit by pitch per team for a given year:\n\n\n# z.input(<input name>, <default value>)\nval year = z.input(\"year\", 1894)\nval hbp1894 = batting.filter($\"yearID\" === year).groupBy(\"teamID\").agg(sum(\"HBP\").alias(\"hit by pitch\"))\nz.show(hbp1894)\n\n\n\n\nz.input\n creates a simple input text. Use \nz.select\n for a dropdown and \nz.checkbox\n for multiple choices. For example, a dropdown for all teams would be:\n\n\n// get all team names\nval all_teams = batting.select(\"teamID\").distinct().map(_.getAs[String](0)).collect()\n// create and show a dropdown form\nval team = z.select(\"selected team\", all_teams.zip(all_teams).sorted)\n\n\n\n\nMore dynamic forms \nin the documentation\n.",
+            "title": "Zeppelin"
+        },
+        {
+            "location": "/zeppelin/#getting-started",
+            "text": "",
+            "title": "Getting Started"
+        },
+        {
+            "location": "/zeppelin/#login",
+            "text": "Go to  Zeppelin  Login using your daplab credentials",
+            "title": "Login"
+        },
+        {
+            "location": "/zeppelin/#create-a-new-notebook",
+            "text": "On the home page or on the notebook menu, select \" create new... \". Once the notebook is open, give it a new name.  Using slashes ( / ) in the notebook name will automatically create and/or move the notebook into folders.",
+            "title": "Create a new notebook"
+        },
+        {
+            "location": "/zeppelin/#basics",
+            "text": "A notebook is made of  cells , also called  paragraphs . A Cell has an  interpreter  that tells Zeppelin which langage/backend to use to run the cell.  The interpreter is configured by writing  %<interpreter name>  at the top of the cell. Without it, Zeppelin will use the default interpreter, which you can configure by clicking on    > interpreters  at the top right of the notebook (drag-drop to re-order them, the first one being the default).  You can run cells by clicking on the   icon on the right or using  shift+enter .   Many useful shortcuts exist in edit mode. Click on   the at the top right of a notebook to display them.",
+            "title": "Basics"
+        },
+        {
+            "location": "/zeppelin/#list-of-interpreter-prefixes",
+            "text": "Prefix  Description      %spark ,  %spark2  Spark with Scala    %spark . sql ,  %spark2 . sql  Spark SQL syntax    %spark . dep ,  %spark2 . dep  Load dependencies for use within Spark cells    %spark . pyspark ,  %spark2 . pyspark  Spark with Python    %md  MarkDown cell    %sh  shell scripts    %jdbc ( hive )  Hive     Note :  spark  is Spark 1.6,  spark2  is Spark 2.1.0.",
+            "title": "List of interpreter prefixes"
+        },
+        {
+            "location": "/zeppelin/#battling-with-spark",
+            "text": "Let's use our  battling.csv  example from the  hive  and  pig  tutorials.",
+            "title": "Battling with spark"
+        },
+        {
+            "location": "/zeppelin/#include-spark-csv",
+            "text": "First, we need an external library to easily read the CSV. On the first cell, enter and run:  %dep  z . load ( \"com.databricks:spark-csv_2.11:1.5.0\" )   %dep  is used to manage dependencies. Have a look  here  for more information.   If you run into the error:  Must be used before SparkInterpreter (%spark) initialized\nHint: put this paragraph before any Spark code and restart Zeppelin/Interpreter  Open the interpretor's list (   > interpreters  on the top right) and click on the   icon on the left of the  spark2  interpreter.",
+            "title": "Include Spark CSV"
+        },
+        {
+            "location": "/zeppelin/#load-data",
+            "text": "%spark2  val   battingFile   =   \"hdfs:///shared/seanlahman/2011/Batting/Batting.csv\"  val   batting   =   sqlContext . read \n     . format ( \"com.databricks.spark.csv\" ) \n     . option ( \"header\" ,   \"true\" )   // Use first line of all files as header \n     . option ( \"inferSchema\" ,   \"true\" )   // Automatically infer data types \n     . load ( battingFile )",
+            "title": "Load Data"
+        },
+        {
+            "location": "/zeppelin/#visualizing",
+            "text": "First, have a  look at the data:  %spark2  z . show ( batting )   NOTE  :  z.show  is a zeppelin builtin that allows you to display values inside a variable. The interface let's you switch between views, such as table, piechart, etc.  Compute some statistics per year :   val statsPerYear = batting\n    .groupBy($\"yearID\")\n    .agg(\n        sum(\"R\").alias(\"total runs\"),\n        sum(\"H\").alias(\"total hits\"), \n        sum(\"G\").alias(\"total games\"))\n\nz.show(statsPerYear)  On the interface, select the line chart   or area chart   and then click on  settings . Drag-and-drop the statistics into the  Values  area:   Use an input form  to display the hit by pitch per team for a given year:  # z.input(<input name>, <default value>)\nval year = z.input(\"year\", 1894)\nval hbp1894 = batting.filter($\"yearID\" === year).groupBy(\"teamID\").agg(sum(\"HBP\").alias(\"hit by pitch\"))\nz.show(hbp1894)  z.input  creates a simple input text. Use  z.select  for a dropdown and  z.checkbox  for multiple choices. For example, a dropdown for all teams would be:  // get all team names\nval all_teams = batting.select(\"teamID\").distinct().map(_.getAs[String](0)).collect()\n// create and show a dropdown form\nval team = z.select(\"selected team\", all_teams.zip(all_teams).sorted)  More dynamic forms  in the documentation .",
+            "title": "Visualizing"
+        }
+    ]
+}
