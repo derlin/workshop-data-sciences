@@ -3,3 +3,8 @@
 body .md-content {
     text-align: justify;
 }
+
+ul ul li {
+    list-style-type: circle;
+    font-size: .9em;
+}
