@@ -149,9 +149,48 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Home
+      </label>
+    
     <a href="." title="Home" class="md-nav__link md-nav__link--active">
       Home
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#schedule" title="Schedule" class="md-nav__link">
+    Schedule
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" title="Requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-snorkel" title="Setting up Snorkel" class="md-nav__link">
+    Setting up Snorkel
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -243,6 +282,34 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#schedule" title="Schedule" class="md-nav__link">
+    Schedule
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" title="Requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-snorkel" title="Setting up Snorkel" class="md-nav__link">
+    Setting up Snorkel
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -256,7 +323,126 @@
                 
                   <h1>Home</h1>
                 
-                <p>Welcome to the datasciences workshop !</p>
+                <blockquote>
+<p><em>Déjà entendu parlé de Hadoop, Spark, Flink ou HDFS ? Curieux de savoir enfin de quoi il retourne ?</em></p>
+</blockquote>
+<p>This workshop takes place at  UNIFR / HEIA-FR the 19<sup>th</sup> and 20<sup>th</sup> of October 2017. It is organised by IT-Valley in collaboration with the DAPLAB. It is intended for any developer willing to familiarize with the Big Data and Data Sciences technologies.</p>
+<p>It will be given in French, with support in English.</p>
+<h2 id="schedule">Schedule</h2>
+<p><strong>Day 1</strong>:</p>
+<ul>
+<li>Introduction: Big Data, Hadoop, HDFS, what are they ?</li>
+<li>HDFS: filesystem and command line usage</li>
+<li>MapReduce:<ul>
+<li><em>theory</em>: what is MapReduce ?</li>
+<li><em>practice</em>: My first MapReduce application (java)</li>
+</ul>
+</li>
+<li>Hive:<ul>
+<li><em>theory</em>: what is NoSQL and Hive</li>
+<li><em>practice</em>: using Hive from the command line </li>
+</ul>
+</li>
+</ul>
+<p><strong>Day 2</strong>:</p>
+<ul>
+<li>Spark and Zeppelin:<ul>
+<li>getting started with Zeppelin (python + pyspark)</li>
+<li>Spark SQL: quick data discovery and visualisation (python + pyspark)</li>
+</ul>
+</li>
+<li>LSA, <em>Latent Semantic Analysis</em>:<ul>
+<li><em>theory</em>: what is it and what is it for ?</li>
+<li><em>practice</em>: implementing a document search engine using LDA, <em>Latent Dirichlet Allocation</em> (python + pyspark)</li>
+</ul>
+</li>
+<li>if there is some time left, a little tour of the DAPLAB</li>
+</ul>
+<h2 id="requirements">Requirements</h2>
+<p>For the workshop, you will need the following:</p>
+<ul>
+<li>a laptop</li>
+<li>the Java JDK version 8 or above</li>
+<li>a java IDE: <ul>
+<li>if you don't already have one, please install the <a href="https://www.jetbrains.com/idea/download/">IntelliJ Community Edition</a></li>
+</ul>
+</li>
+<li>Maven:<ul>
+<li>If you have IntelliJ, you can skip this step as it already ships with an embedded Maven</li>
+<li>If you want Maven available from the command line as well, follow the installation instructions on the <a href="https://maven.apache.org/install.html" target="_blank">Maven website</a></li>
+</ul>
+</li>
+<li>Docker:<ul>
+<li><a href="https://docs.docker.com/docker-for-windows/install/" target="_blank">Windows</a> installation guide</li>
+<li><a href="https://docs.docker.com/docker-for-mac/install/" target="_blank">Mac</a> installation guide</li>
+</ul>
+</li>
+<li>Snorkel:<ul>
+<li>follow the instruction at <a href="https://github.com/Sqooba/snorkel" target="_blank">https://github.com/Sqooba/snorkel</a> or have a look at the section below.</li>
+</ul>
+</li>
+</ul>
+<h2 id="setting-up-snorkel">Setting up Snorkel</h2>
+<div class="admonition error">
+<p>You need Docker running on your machine. </p>
+</div>
+<p>Snorkel is a docker container allowing you to run Zeppelin locally.</p>
+<ol>
+<li>
+<p>Download snorkel: </p>
+<ul>
+<li>If you have git installed, clone the following repository: 
+  <div class="codehilite"><pre><span></span>git clone https://github.com/Sqooba/snorkel.git
+</pre></div></li>
+<li>If you don't have git installed, go to <a href="https://github.com/Sqooba/snorkel" target="_blank">https://github.com/Sqooba/snorkel</a> 
+  and select <i>Clone or download &gt; Download ZIP</i>, then unzip.</li>
+</ul>
+</li>
+<li>
+<p>open a command line and navigate inside the snorkel folder;</p>
+</li>
+<li>
+<p>build the zeppelin image:</p>
+<ul>
+<li>On Mac/Linux:
+    <div class="codehilite"><pre><span></span>./build-images.sh
+</pre></div></li>
+<li>On Windows (from the command prompt or the powershell):
+    <div class="codehilite"><pre><span></span>cd zeppelin
+docker build . -t sqooba/zeppelin-starter
+cd ..
+</pre></div></li>
+</ul>
+</li>
+<li>
+<p>start zeppelin:</p>
+<ul>
+<li>On Mac/Linux:
+    <div class="codehilite"><pre><span></span>./start-zeppelin.sh
+</pre></div></li>
+<li>On Windows (from the command prompt or the powershell):
+    <div class="codehilite"><pre><span></span>./start-zeppelin.bat
+</pre></div></li>
+</ul>
+</li>
+<li>
+<p>check that zeppelin is running: </p>
+<ul>
+<li>go to <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a>, you should have a zeppelin welcome screen;</li>
+</ul>
+</li>
+<li>
+<p>stop zeppelin:</p>
+<ul>
+<li>On Mac/Linux:
+    <div class="codehilite"><pre><span></span>./stop-zeppelin.sh
+</pre></div></li>
+<li>On Windows (from the command prompt or the powershell):
+    <div class="codehilite"><pre><span></span>./stop-zeppelin.bat
+</pre></div></li>
+</ul>
+</li>
+</ol>
                 
                   
                 
