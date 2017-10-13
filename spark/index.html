@@ -209,9 +209,94 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Spark
+      </label>
+    
     <a href="./" title="Spark" class="md-nav__link md-nav__link--active">
       Spark
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-we-will-do" title="What we will do" class="md-nav__link">
+    What we will do
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-we-will-use" title="What we will use" class="md-nav__link">
+    What we will use
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-algorithms" title="Available algorithms" class="md-nav__link">
+    Available algorithms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lda-basics" title="LDA Basics" class="md-nav__link">
+    LDA Basics
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lda-with-pyspark" title="LDA with pyspark" class="md-nav__link">
+    LDA with pyspark
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-the-dataset" title="Getting the dataset" class="md-nav__link">
+    Getting the dataset
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -243,6 +328,80 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-we-will-do" title="What we will do" class="md-nav__link">
+    What we will do
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-we-will-use" title="What we will use" class="md-nav__link">
+    What we will use
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-algorithms" title="Available algorithms" class="md-nav__link">
+    Available algorithms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lda-basics" title="LDA Basics" class="md-nav__link">
+    LDA Basics
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lda-with-pyspark" title="LDA with pyspark" class="md-nav__link">
+    LDA with pyspark
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-the-dataset" title="Getting the dataset" class="md-nav__link">
+    Getting the dataset
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -256,7 +415,46 @@
                 
                   <h1>Spark</h1>
                 
-                <p>Coming soon <img alt="😉" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f609.svg" title=":wink:" /></p>
+                <p>In this workshop, we will create a search engine for BBC articles using pyspark and the Spark ML library. </p>
+<ul>
+<li><a href="" target="_blank">pyspark documentation</a></li>
+<li><a href="https://spark.apache.org/docs/2.1.0/ml-guide.html" target="_blank">ML guide</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<h3 id="what-we-will-do">What we will do</h3>
+<p>To create the search engine, we will do the following steps:</p>
+<p><img alt="steps" src="../resources/spark-lda-steps.png" /></p>
+<h3 id="what-we-will-use">What we will use</h3>
+<p>LSA, <em>latent semantic anlysis</em> is</p>
+<blockquote>
+<p><em>a technique in natural language processing, in particular distributional semantics, of analyzing relationships between a set of documents and the terms they contain by producing a set of concepts related to the documents and terms</em> (source: wikipedia)</p>
+</blockquote>
+<p>In summary, we want to establish underlying relationships between documents in a collection by linking documents and terms through <em>concepts</em>. Those concepts are deduced or constructed through a statistical or mathematical algorithm that forms a <em>model</em>. Once we have the model, we can begin using it for search queries.</p>
+<h4 id="available-algorithms">Available algorithms</h4>
+<p>There are two well-known methods for discovering underlying topics:</p>
+<ol>
+<li>
+<p><strong>SVD</strong>, <em>Singular Value Decomposition</em>: is a mathematical method for decomposing a matrix into a product of smaller matrices. It has the advantage of being <em>mathematically correct</em>: computing the model, hence  the decomposed matrices, takes only one pass and is deterministic: the same data will always give the same result (as long as the same parameters are used).</p>
+</li>
+<li>
+<p><strong>LDA</strong>, <em>Latent Dirichlet Allocation</em>, is a generative probabilistic model. Based on statistics, many iterations are necessary to get a good-enough model and every run could give a different result. The result is also highly dependant on the parameters we use for the training. </p>
+</li>
+</ol>
+<p>In this workshop, we will use the LDA technique.</p>
+<h4 id="lda-basics">LDA Basics</h4>
+<p>LDA is like a clustering algorithm where :</p>
+<ul>
+<li>the <em>cluster centers</em> are the topics;</li>
+<li>the <em>training examples</em> are documents;</li>
+<li>the <em>features</em> are the word frequencies;</li>
+<li>the distance is <del>euclidean</del> based on a statistical model (Bayesian inference rules / Dirichlet distribution)</li>
+</ul>
+<p>As in clustering, we need to give some informations (<em>parameters</em>) to the model. The most important one is <strong>the number of topics (k)</strong> we think there is (exactly as we need to specify the number of clusters to find).</p>
+<p>During training, the model will first assign each document to a random topic. Then, on each iteration, it computes how well the actual topic distribution describes/predicts each document, makes adjustments and try again. Most of the time, the programmer will set in advance the <strong>maximum number of iterations</strong> to do.</p>
+<p>In the end, the model outputs a topic distribution over document (how much a document is important to a given topic) and over terms (how much the term describes the topic). Documents with similar topic distributions are likely to be similar, even if they don't use the same words.</p>
+<h2 id="lda-with-pyspark">LDA with pyspark</h2>
+<h3 id="getting-the-dataset">Getting the dataset</h3>
+<p>coming soon <img alt="😉" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f609.svg" title=":wink:" /></p>
                 
                   
                 

@@ -182,8 +182,43 @@
         },
         {
             "location": "/spark/",
-            "text": "Coming soon",
+            "text": "In this workshop, we will create a search engine for BBC articles using pyspark and the Spark ML library. \n\n\n\n\npyspark documentation\n\n\nML guide\n\n\n\n\nIntroduction\n\n\nWhat we will do\n\n\nTo create the search engine, we will do the following steps:\n\n\n\n\nWhat we will use\n\n\nLSA, \nlatent semantic anlysis\n is\n\n\n\n\na technique in natural language processing, in particular distributional semantics, of analyzing relationships between a set of documents and the terms they contain by producing a set of concepts related to the documents and terms\n (source: wikipedia)\n\n\n\n\nIn summary, we want to establish underlying relationships between documents in a collection by linking documents and terms through \nconcepts\n. Those concepts are deduced or constructed through a statistical or mathematical algorithm that forms a \nmodel\n. Once we have the model, we can begin using it for search queries.\n\n\nAvailable algorithms\n\n\nThere are two well-known methods for discovering underlying topics:\n\n\n\n\n\n\nSVD\n, \nSingular Value Decomposition\n: is a mathematical method for decomposing a matrix into a product of smaller matrices. It has the advantage of being \nmathematically correct\n: computing the model, hence  the decomposed matrices, takes only one pass and is deterministic: the same data will always give the same result (as long as the same parameters are used).\n\n\n\n\n\n\nLDA\n, \nLatent Dirichlet Allocation\n, is a generative probabilistic model. Based on statistics, many iterations are necessary to get a good-enough model and every run could give a different result. The result is also highly dependant on the parameters we use for the training. \n\n\n\n\n\n\nIn this workshop, we will use the LDA technique.\n\n\nLDA Basics\n\n\nLDA is like a clustering algorithm where :\n\n\n\n\nthe \ncluster centers\n are the topics;\n\n\nthe \ntraining examples\n are documents;\n\n\nthe \nfeatures\n are the word frequencies;\n\n\nthe distance is \neuclidean\n based on a statistical model (Bayesian inference rules / Dirichlet distribution)\n\n\n\n\nAs in clustering, we need to give some informations (\nparameters\n) to the model. The most important one is \nthe number of topics (k)\n we think there is (exactly as we need to specify the number of clusters to find).\n\n\nDuring training, the model will first assign each document to a random topic. Then, on each iteration, it computes how well the actual topic distribution describes/predicts each document, makes adjustments and try again. Most of the time, the programmer will set in advance the \nmaximum number of iterations\n to do.\n\n\nIn the end, the model outputs a topic distribution over document (how much a document is important to a given topic) and over terms (how much the term describes the topic). Documents with similar topic distributions are likely to be similar, even if they don't use the same words.\n\n\nLDA with pyspark\n\n\nGetting the dataset\n\n\ncoming soon",
             "title": "Spark"
+        },
+        {
+            "location": "/spark/#introduction",
+            "text": "",
+            "title": "Introduction"
+        },
+        {
+            "location": "/spark/#what-we-will-do",
+            "text": "To create the search engine, we will do the following steps:",
+            "title": "What we will do"
+        },
+        {
+            "location": "/spark/#what-we-will-use",
+            "text": "LSA,  latent semantic anlysis  is   a technique in natural language processing, in particular distributional semantics, of analyzing relationships between a set of documents and the terms they contain by producing a set of concepts related to the documents and terms  (source: wikipedia)   In summary, we want to establish underlying relationships between documents in a collection by linking documents and terms through  concepts . Those concepts are deduced or constructed through a statistical or mathematical algorithm that forms a  model . Once we have the model, we can begin using it for search queries.",
+            "title": "What we will use"
+        },
+        {
+            "location": "/spark/#available-algorithms",
+            "text": "There are two well-known methods for discovering underlying topics:    SVD ,  Singular Value Decomposition : is a mathematical method for decomposing a matrix into a product of smaller matrices. It has the advantage of being  mathematically correct : computing the model, hence  the decomposed matrices, takes only one pass and is deterministic: the same data will always give the same result (as long as the same parameters are used).    LDA ,  Latent Dirichlet Allocation , is a generative probabilistic model. Based on statistics, many iterations are necessary to get a good-enough model and every run could give a different result. The result is also highly dependant on the parameters we use for the training.     In this workshop, we will use the LDA technique.",
+            "title": "Available algorithms"
+        },
+        {
+            "location": "/spark/#lda-basics",
+            "text": "LDA is like a clustering algorithm where :   the  cluster centers  are the topics;  the  training examples  are documents;  the  features  are the word frequencies;  the distance is  euclidean  based on a statistical model (Bayesian inference rules / Dirichlet distribution)   As in clustering, we need to give some informations ( parameters ) to the model. The most important one is  the number of topics (k)  we think there is (exactly as we need to specify the number of clusters to find).  During training, the model will first assign each document to a random topic. Then, on each iteration, it computes how well the actual topic distribution describes/predicts each document, makes adjustments and try again. Most of the time, the programmer will set in advance the  maximum number of iterations  to do.  In the end, the model outputs a topic distribution over document (how much a document is important to a given topic) and over terms (how much the term describes the topic). Documents with similar topic distributions are likely to be similar, even if they don't use the same words.",
+            "title": "LDA Basics"
+        },
+        {
+            "location": "/spark/#lda-with-pyspark",
+            "text": "",
+            "title": "LDA with pyspark"
+        },
+        {
+            "location": "/spark/#getting-the-dataset",
+            "text": "coming soon",
+            "title": "Getting the dataset"
         },
         {
             "location": "/lsa/",
