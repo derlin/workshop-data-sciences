@@ -45,9 +45,58 @@ For the workshop, you will need the following:
     * [Windows](https://docs.docker.com/docker-for-windows/install/){: target="_blank"} installation guide
     * [Mac](https://docs.docker.com/docker-for-mac/install/){: target="_blank"} installation guide
 - Snorkel:
+    - follow the instruction at [https://github.com/Sqooba/snorkel](https://github.com/Sqooba/snorkel){: target="_blank"} or have a look at the section below.
+
+## Setting up Snorkel
+
+
+!!! Error ""
+    You need Docker running on your machine. 
+
+Snorkel is a docker container allowing you to run Zeppelin locally.
+
+1. Download snorkel: 
+
     * If you have git installed, clone the following repository: 
       ```shell
       git clone https://github.com/Sqooba/snorkel.git
       ```
     * If you don't have git installed, go to [https://github.com/Sqooba/snorkel](https://github.com/Sqooba/snorkel){: target="_blank"} 
-      and select <i>Clone or download > Download ZIP</i>
+      and select <i>Clone or download > Download ZIP</i>, then unzip.
+
+2. open a command line and navigate inside the snorkel folder;
+
+3. build the zeppelin image:
+    * On Mac/Linux:
+        ```
+        ./build-images.sh
+        ```
+    * On Windows (from the command prompt or the powershell):
+        ```
+        cd zeppelin
+        docker build . -t sqooba/zeppelin-starter
+        cd ..
+        ```
+
+4. start zeppelin:
+    * On Mac/Linux:
+        ```
+        ./start-zeppelin.sh
+        ```
+    * On Windows (from the command prompt or the powershell):
+        ```
+        ./start-zeppelin.bat
+        ```
+
+5. check that zeppelin is running: 
+    - go to [http://localhost:8080/](http://localhost:8080/){: target="_blank"}, you should have a zeppelin welcome screen;
+
+6. stop zeppelin:
+    * On Mac/Linux:
+        ```
+        ./stop-zeppelin.sh
+        ```
+    * On Windows (from the command prompt or the powershell):
+        ```
+        ./stop-zeppelin.bat
+        ```
