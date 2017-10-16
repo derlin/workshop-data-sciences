@@ -3,6 +3,12 @@
 
 This workshop takes place at  UNIFR / HEIA-FR the 19th and 20th of October 2017. It is organised by IT-Valley in collaboration with the DAPLAB. It is intended for any developer willing to familiarize with the Big Data and Data Sciences technologies.
 
+Location:
+
+- Room C00.11
+- Haute école d'ingénierie et d'architecture de Fribourg
+- Bd de Pérolles 80, 1705 Fribourg
+
 It will be given in French, with support in English.
 
 
