@@ -16,8 +16,8 @@ __Day 1__:
     * _theory_: what is MapReduce ?
     * _practice_: My first MapReduce application (java)
 - Hive:
-    * _theory_: what is NoSQL and Hive
-    * _practice_: using Hive from the command line 
+    * _theory_: what is Hive?
+    * _practice_: Querying and manipulating data using Hive
 
 __Day 2__:
 
@@ -34,7 +34,7 @@ __Day 2__:
 For the workshop, you will need the following:
 
 
-- a laptop
+- a laptop (Recommended: Mac or Linux)
 - the Java JDK version 8 or above
 - a java IDE: 
     * if you don't already have one, please install the [IntelliJ Community Edition](https://www.jetbrains.com/idea/download/)
