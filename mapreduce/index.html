@@ -173,9 +173,89 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        MapReduce
+      </label>
+    
     <a href="./" title="MapReduce" class="md-nav__link md-nav__link--active">
       MapReduce
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mapreduce-framework" title="MapReduce Framework" class="md-nav__link">
+    MapReduce Framework
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapreduce-phases" title="MapReduce Phases" class="md-nav__link">
+    MapReduce Phases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-with-mapreduce" title="Coding with MapReduce" class="md-nav__link">
+    Coding with MapReduce
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-types-and-formats" title="Data Types and Formats" class="md-nav__link">
+    Data Types and Formats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-examine-our-first-mapreduce-program" title="Let’s examine our first MapReduce program" class="md-nav__link">
+    Let’s examine our first MapReduce program
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-program" title="Running the program" class="md-nav__link">
+    Running the program
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-tips" title="Implementation Tips" class="md-nav__link">
+    Implementation Tips
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bigrams-count" title="Bigrams count" class="md-nav__link">
+    Bigrams count
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -243,6 +323,75 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mapreduce-framework" title="MapReduce Framework" class="md-nav__link">
+    MapReduce Framework
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapreduce-phases" title="MapReduce Phases" class="md-nav__link">
+    MapReduce Phases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-with-mapreduce" title="Coding with MapReduce" class="md-nav__link">
+    Coding with MapReduce
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-types-and-formats" title="Data Types and Formats" class="md-nav__link">
+    Data Types and Formats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-examine-our-first-mapreduce-program" title="Let’s examine our first MapReduce program" class="md-nav__link">
+    Let’s examine our first MapReduce program
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-program" title="Running the program" class="md-nav__link">
+    Running the program
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-tips" title="Implementation Tips" class="md-nav__link">
+    Implementation Tips
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bigrams-count" title="Bigrams count" class="md-nav__link">
+    Bigrams count
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -256,7 +405,150 @@
                 
                   <h1>MapReduce</h1>
                 
-                <p>Coming soon <img alt="😉" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f609.svg" title=":wink:" /></p>
+                <p>MapReduce is a programming model for distributed data processing across multiple nodes. The programs are designed to compute large volumes of data in a parallel fashion. MapReduce works by breaking the processing into two main phases: Map phase and Reduce phase.</p>
+<p>MapReduce execution framework allows the following:</p>
+<ul>
+<li>Automatic parallelization and distribution</li>
+<li>Fault tolerance</li>
+<li>Abstraction for programmers</li>
+</ul>
+<h2 id="mapreduce-framework">MapReduce Framework</h2>
+<p><img alt="Mapreduce Framework" src="../resources/mapreduce_framework.png" /></p>
+<h2 id="mapreduce-phases">MapReduce Phases</h2>
+<p><strong>Map phase</strong></p>
+<ul>
+<li>Map phase is usually for filtering or transforming data. Each mapper performs a user-defined operation on a single HDFS block</li>
+<li>Map tasks run on the node where the data block is stored</li>
+<li>Input: key/value pair</li>
+<li>Output: A list of zero or more key value/pairs</li>
+</ul>
+<p><strong>Partition - Shuffle and sort phase</strong></p>
+<ul>
+<li>Partitioner: Determines which partition a given (key,value) pair will go to</li>
+<li>Shuffling: Moving map outputs to the reducers</li>
+<li>Sorting: The set of intermediate keys on a single node is sorted before passing to the reducer</li>
+</ul>
+<p><strong>Reduce phase</strong></p>
+<ul>
+<li>Read all results for each key and performs a user-defined operation, for example: aggregations</li>
+<li>The Reducer outputs zero or more final key/value pairs to the HDFS</li>
+</ul>
+<h2 id="coding-with-mapreduce">Coding with MapReduce</h2>
+<h3 id="data-types-and-formats">Data Types and Formats</h3>
+<ul>
+<li>Keys and values are java objects</li>
+<li>Writable interface for serialization</li>
+<li>Values implement Writable interface</li>
+<li>Keys implement WritableComparable interface</li>
+<li>IntWritable – int</li>
+<li>LongWritable – Long</li>
+<li>FloatWritable – Float</li>
+<li>DoubleWritable - Double</li>
+<li>Text – String values</li>
+</ul>
+<h3 id="lets-examine-our-first-mapreduce-program">Let’s examine our first MapReduce program</h3>
+<p>A typical MapReduce program consists of three main parts: Driver, Mapper and Reducer code.</p>
+<p><strong>Driver Code</strong></p>
+<ul>
+<li>Contains Job configuration and submission details</li>
+<li>Configurations not explicitly set in your driver code will be read from your Hadoop configuration files (/etc/hadoop/conf)</li>
+</ul>
+<p>Examine the below sample for Driver Code of word count example:</p>
+<p><div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">Configuration</span> <span class="n">conf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">();</span>
+    <span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Job</span><span class="o">(</span><span class="n">conf</span><span class="o">,</span><span class="s">&quot;word count&quot;</span><span class="o">);</span>
+
+    <span class="n">job</span><span class="o">.</span><span class="na">setInputFormatClass</span><span class="o">(</span><span class="n">TextInputFormat</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">job</span><span class="o">.</span><span class="na">setJarByClass</span><span class="o">(</span><span class="n">WordCount</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">job</span><span class="o">.</span><span class="na">setMapperClass</span><span class="o">(</span><span class="n">WCMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">job</span><span class="o">.</span><span class="na">setReducerClass</span><span class="o">(</span><span class="n">WCReducer</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">job</span><span class="o">.</span><span class="na">setMapOutputKeyClass</span><span class="o">(</span><span class="n">Text</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">job</span><span class="o">.</span><span class="na">setMapOutputValueClass</span><span class="o">(</span><span class="n">IntWritable</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">job</span><span class="o">.</span><span class="na">setOutputKeyClass</span><span class="o">(</span><span class="n">Text</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">job</span><span class="o">.</span><span class="na">setOutputValueClass</span><span class="o">(</span><span class="n">IntWritable</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">job</span><span class="o">.</span><span class="na">setOutputFormatClass</span><span class="o">(</span><span class="n">TextOutputFormat</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">FileInputFormat</span><span class="o">.</span><span class="na">addInputPath</span><span class="o">(</span><span class="n">job</span><span class="o">,</span> <span class="k">new</span> <span class="n">Path</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]));</span>
+    <span class="n">FileOutputFormat</span><span class="o">.</span><span class="na">setOutputPath</span><span class="o">(</span><span class="n">job</span><span class="o">,</span> <span class="k">new</span> <span class="n">Path</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]));</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="n">job</span><span class="o">.</span><span class="na">waitForCompletion</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+<strong>Mapper Code</strong></p>
+<ul>
+<li>Extend Mapper base class</li>
+<li>Override map()</li>
+<li>Input: key/value</li>
+<li>Output: key/value</li>
+</ul>
+<p>Sample for Map class for word count example:</p>
+<p><div class="codehilite"><pre><span></span><span class="kd">static</span> <span class="kd">class</span> <span class="nc">WCMapper</span> <span class="kd">extends</span> <span class="n">Mapper</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">,</span> <span class="n">Text</span><span class="o">,</span> <span class="n">Text</span><span class="o">,</span> <span class="n">IntWritable</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">IntWritable</span> <span class="n">one</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntWritable</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="n">Text</span> <span class="n">word</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Text</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">map</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">,</span> <span class="n">Text</span> <span class="n">value</span><span class="o">,</span> <span class="n">Context</span> <span class="n">context</span><span class="o">)</span>
+    <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+        <span class="n">StringTokenizer</span> <span class="n">itr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringTokenizer</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">itr</span><span class="o">.</span><span class="na">hasMoreTokens</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">word</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">itr</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+            <span class="n">context</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="n">one</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<strong>Reducer Code</strong></p>
+<ul>
+<li>Extend Reducer base class</li>
+<li>Override reduce()</li>
+<li>Input: key/collection of values</li>
+<li>Output: key/value</li>
+</ul>
+<p>Sample for Reduce class for word count example:</p>
+<div class="codehilite"><pre><span></span><span class="kd">static</span> <span class="kd">class</span> <span class="nc">WCReducer</span> <span class="kd">extends</span> <span class="n">Reducer</span><span class="o">&lt;</span><span class="n">Text</span><span class="o">,</span> <span class="n">IntWritable</span><span class="o">,</span> <span class="n">Text</span><span class="o">,</span> <span class="n">IntWritable</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">IntWritable</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntWritable</span><span class="o">();</span>
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">reduce</span><span class="o">(</span><span class="n">Text</span> <span class="n">key</span><span class="o">,</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">IntWritable</span><span class="o">&gt;</span> <span class="n">values</span><span class="o">,</span> <span class="n">Context</span> <span class="n">context</span><span class="o">)</span>
+    <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">IntWritable</span> <span class="n">value</span> <span class="o">:</span> <span class="n">values</span><span class="o">)</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="n">result</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+        <span class="n">context</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+<h3 id="running-the-program">Running the program</h3>
+<ul>
+<li>Download [source code] for word count example</li>
+<li>Compile the code and create a jar</li>
+<li>We will use the same [data set] which should be already loaded to HDFS</li>
+<li>Use the following command to execute the job:</li>
+</ul>
+<p><code class="codehilite"><span class="cp">${</span><span class="n">HADOOP_HOME</span><span class="cp">}</span>/bin/hadoop jar <span class="nt">&lt;jar</span><span class="err">-name</span><span class="nt">&gt;</span>  <span class="nt">&lt;main</span><span class="err">-class</span><span class="nt">&gt;</span> <span class="nt">&lt;input</span><span class="err">-path</span><span class="nt">&gt;</span> <span class="nt">&lt;output</span><span class="err">-path</span><span class="nt">&gt;</span></code></p>
+<ul>
+<li>Examine the logs</li>
+<li>Examine the output</li>
+</ul>
+<h2 id="implementation-tips">Implementation Tips</h2>
+<ul>
+<li>Input splits</li>
+<li>Counters</li>
+<li>Distributed cache</li>
+<li>Number of mappers and reducers</li>
+</ul>
+<h2 id="bigrams-count">Bigrams count</h2>
+<ul>
+<li>Write a MapReduce program to count the co-occurrences of pairs of words in the [data set]</li>
+<li>For simplicity, you can use this [code helper] program structure and build upon it</li>
+<li>Monitor the progress of your job</li>
+<li>Examine the output</li>
+<li>Use the combiner class to optimize your job</li>
+</ul>
                 
                   
                 
