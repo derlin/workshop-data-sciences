@@ -18,7 +18,7 @@
     
     
       
-        <title>Spark - Workshop data sciences</title>
+        <title>LSA with Spark ML - Workshop data sciences</title>
       
     
     
@@ -80,7 +80,7 @@
             
               
             
-            Spark
+            LSA with Spark ML
           
         </span>
       </div>
@@ -191,8 +191,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../zeppelin/" title="Hello Zeppelin" class="md-nav__link">
-      Hello Zeppelin
+    <a href="../zeppelin/" title="Zeppelin/Spark SQL" class="md-nav__link">
+      Zeppelin/Spark SQL
     </a>
   </li>
 
@@ -210,11 +210,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Spark
+        LSA with Spark ML
       </label>
     
-    <a href="./" title="Spark" class="md-nav__link md-nav__link--active">
-      Spark
+    <a href="./" title="LSA with Spark ML" class="md-nav__link md-nav__link--active">
+      LSA with Spark ML
     </a>
     
       
@@ -406,6 +406,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#top-terms-for-term" title="Top terms for term" class="md-nav__link">
+    Top terms for term
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#top-docs-for-terms" title="Top docs for terms" class="md-nav__link">
     Top docs for terms
   </a>
@@ -429,24 +436,19 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#where-to-go-from-here" title="Where to go from here" class="md-nav__link">
+    Where to go from here
+  </a>
+  
+</li>
+      
       
       
     </ul>
   
 </nav>
     
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../lsa/" title="LSA" class="md-nav__link">
-      LSA
-    </a>
   </li>
 
     
@@ -649,6 +651,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#top-terms-for-term" title="Top terms for term" class="md-nav__link">
+    Top terms for term
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#top-docs-for-terms" title="Top docs for terms" class="md-nav__link">
     Top docs for terms
   </a>
@@ -672,6 +681,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#where-to-go-from-here" title="Where to go from here" class="md-nav__link">
+    Where to go from here
+  </a>
+  
+</li>
+      
       
       
     </ul>
@@ -687,7 +703,7 @@
               
                 
                 
-                  <h1>Spark</h1>
+                  <h1>LSA with Spark ML</h1>
                 
                 <p>In this workshop, we will create a search engine for BBC articles using pyspark and the Spark ML library. </p>
 <ul>
@@ -1042,7 +1058,9 @@ where <em>N</em> is the number of documents in the corpus and df<sub>t</sub> is 
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># oups: not in the vocabulary. List some random terms instead.</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is not in the vocabulary. Try: </span><span class="si">%s</span><span class="s2">...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">vocabulary</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="p">))</span>
-</pre></div></p></details><h4 id="top-docs-for-terms">Top docs for terms</h4>
+</pre></div></p></details><h4 id="top-terms-for-term">Top terms for term</h4>
+<p>Using nearly the same code as above, we can also list the most relevant terms for a term.</p>
+<details class="solution"><summary>Solution</summary><p>Simply replace <code class="codehilite">q.topDocsForTerm(termId)</code> with <code class="codehilite">q.topTermsForTerm(termId)</code> in the code above.</p></details><h4 id="top-docs-for-terms">Top docs for terms</h4>
 <p>Here, we do quite the same as above, but let the user enter multiple terms (the relevant <code class="codehilite">QueryEngine</code> method is <code class="codehilite">topDocsForTermQuery</code>).</p>
 <details class="solution"><summary>Solution</summary><div class="codehilite"><pre><span></span><span class="o">%</span><span class="n">pyspark</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -1082,7 +1100,19 @@ where <em>N</em> is the number of documents in the corpus and df<sub>t</sub> is 
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Top documents for doc #</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">docId</span><span class="p">)</span>
 <span class="n">q</span><span class="o">.</span><span class="n">topDocsForDoc</span><span class="p">(</span><span class="n">docId</span><span class="p">)</span><span class="o">.</span><span class="n">toTable</span><span class="p">()</span>
 </pre></div>
-</details>
+</details><h2 id="where-to-go-from-here">Where to go from here</h2>
+<p>Considering our application, there are many things we could change/enhance. For example:</p>
+<ul>
+<li>we chose a bit randomly <code class="codehilite">k = 10</code>. From the information we have on our data, another value for <code class="codehilite">k</code> could yield better results. The same holds for the size of the vocabulary (set to <code class="codehilite">3000</code>);</li>
+<li>concerning the preprocessing, we could:<ul>
+<li>use different stopwords or even skip the stopwords removal step;</li>
+<li>use <em>lemmatization</em> or <em>stemming</em> to group words from the same family/root into <em>token classes</em>;</li>
+<li>change the TF-IDF formula to finetune our scoring system;</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<p>There are also other techniques for LSA, like the <em>SVD</em> algorithm we mentioned in the introduction. Spark ML offers an implementation of <em>SVD</em> that can yield the same kind of results (let me know if you are interested, I can give you some pointers <img alt="😉" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f609.svg" title=":wink:" />).</p>
                 
                   
                 
@@ -1101,7 +1131,7 @@ where <em>N</em> is the number of documents in the corpus and df<sub>t</sub> is 
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../zeppelin/" title="Hello Zeppelin" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../zeppelin/" title="Zeppelin/Spark SQL" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1110,25 +1140,11 @@ where <em>N</em> is the number of documents in the corpus and df<sub>t</sub> is 
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Hello Zeppelin
+                Zeppelin/Spark SQL
               </span>
             </div>
           </a>
         
-        
-          <a href="../lsa/" title="LSA" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                LSA
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
         
       </nav>
     </div>
