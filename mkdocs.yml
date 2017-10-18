@@ -12,9 +12,8 @@ pages:
     - MapReduce: mapreduce.md
     - Hive: hive.md
     # day 2
-    - Hello Zeppelin: zeppelin.md
-    - Spark: spark.md 
-    - LSA: lsa.md
+    - Zeppelin/Spark SQL: zeppelin.md
+    - LSA with Spark ML: spark.md 
 
 # ----------------------
 
@@ -25,8 +24,6 @@ markdown_extensions:
     - attr_list
     - admonition
     - codehilite #(linenums=true)
-    - markdown_include.include:
-        base_path: docs
     - pymdownx.arithmatex
     - pymdownx.betterem(smart_enable=all)
     - pymdownx.caret

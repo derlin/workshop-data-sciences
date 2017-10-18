@@ -495,6 +495,12 @@ Try to write an interactive query where the user enters a term and the system di
         print("%s is not in the vocabulary. Try: %s..." % (term, ", ".join(random.sample(vocabulary, 10)) ))
     ```
 
+#### Top terms for term
+
+Using nearly the same code as above, we can also list the most relevant terms for a term.
+
+??? Solution
+    Simply replace `q.topDocsForTerm(termId)` with `q.topTermsForTerm(termId)` in the code above.
 
 #### Top docs for terms
 
@@ -548,3 +554,16 @@ The `docId` is the ID of the selected document. Add the code necessary to list r
     print("Top documents for doc #%d" % docId)
     q.topDocsForDoc(docId).toTable()
     ```
+
+## Where to go from here
+
+Considering our application, there are many things we could change/enhance. For example:
+
+* we chose a bit randomly `k = 10`. From the information we have on our data, another value for `k` could yield better results. The same holds for the size of the vocabulary (set to `3000`);
+* concerning the preprocessing, we could:
+    - use different stopwords or even skip the stopwords removal step;
+    - use _lemmatization_ or _stemming_ to group words from the same family/root into _token classes_;
+    - change the TF-IDF formula to finetune our scoring system;
+    - ...
+
+There are also other techniques for LSA, like the _SVD_ algorithm we mentioned in the introduction. Spark ML offers an implementation of _SVD_ that can yield the same kind of results (let me know if you are interested, I can give you some pointers :wink:).
