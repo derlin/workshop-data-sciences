@@ -185,9 +185,97 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Hive
+      </label>
+    
     <a href="./" title="Hive" class="md-nav__link md-nav__link--active">
       Hive
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" title="Resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-database-a-table-and-loading-data" title="Creating a database, a table and loading data" class="md-nav__link">
+    Creating a database, a table and loading data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-preparation" title="Data Preparation" class="md-nav__link">
+    Data Preparation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-database-in-hive" title="Create a database in Hive" class="md-nav__link">
+    Create a database in Hive
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-temp-table-to-load-the-file-into" title="Create a temp table to load the file into" class="md-nav__link">
+    Create a temp table to load the file into
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-final-table-and-insert-the-data-into" title="Create the final table and insert the data into" class="md-nav__link">
+    Create the final table and insert the data into
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-your-first-query" title="Run your first query" class="md-nav__link">
+    Run your first query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-a-more-complex-query" title="Run a more complex query" class="md-nav__link">
+    Run a more complex query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hive-external-table" title="Hive external table" class="md-nav__link">
+    Hive external table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleanup" title="Cleanup" class="md-nav__link">
+    Cleanup
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -243,6 +331,83 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" title="Resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-database-a-table-and-loading-data" title="Creating a database, a table and loading data" class="md-nav__link">
+    Creating a database, a table and loading data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-preparation" title="Data Preparation" class="md-nav__link">
+    Data Preparation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-database-in-hive" title="Create a database in Hive" class="md-nav__link">
+    Create a database in Hive
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-temp-table-to-load-the-file-into" title="Create a temp table to load the file into" class="md-nav__link">
+    Create a temp table to load the file into
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-final-table-and-insert-the-data-into" title="Create the final table and insert the data into" class="md-nav__link">
+    Create the final table and insert the data into
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-your-first-query" title="Run your first query" class="md-nav__link">
+    Run your first query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-a-more-complex-query" title="Run a more complex query" class="md-nav__link">
+    Run a more complex query
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hive-external-table" title="Hive external table" class="md-nav__link">
+    Hive external table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleanup" title="Cleanup" class="md-nav__link">
+    Cleanup
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -256,7 +421,116 @@
                 
                   <h1>Hive</h1>
                 
-                <p>Coming soon <img alt="😉" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f609.svg" title=":wink:" /></p>
+                <p>Hive is a "pluggable software" running on top of YARN/HDFS. Its primary goal is
+to facilitate reading, writing, and managing large datasets residing in distributed storage using SQL.</p>
+<p>With Hive, it is possible to project a structure onto data already in storage and to write
+<strong>Hive Query Language (HQL)</strong> statements that are similar to standard SQL statements. Of course, Hive implements only a limited subset of SQL commands, but is still quite helpful.</p>
+<p>Under the hood, HQL statement are translated into <em>MapReduce</em> jobs and executed across a Hadoop cluster.</p>
+<h2 id="resources">Resources</h2>
+<p>This tutorial is heavily inspired from the HortonWorks tutorial and is illustrated in command-line.</p>
+<ul>
+<li><a href="http://hortonworks.com/hadoop-tutorial/how-to-process-data-with-apache-hive/" target="_blank">http://hortonworks.com/hadoop-tutorial/how-to-process-data-with-apache-hive/</a></li>
+</ul>
+<h2 id="creating-a-database-a-table-and-loading-data">Creating a database, a table and loading data</h2>
+<p>Note: In order to have this tutorial to work for everybody, let's create a database prefixed by your username (<code class="codehilite"><span class="cp">${</span><span class="n">env</span><span class="p">:</span><span class="n">USER</span><span class="cp">}</span></code> inside hive)</p>
+<h2 id="data-preparation">Data Preparation</h2>
+<p>Here, we will use a CSV file with batting records, i.e. statistics about baseball players for each year.</p>
+<p>The headers are:</p>
+<p>playerID, yearID, stint, teamID, lgID, G ,G_batting, AB, R, H, 2B, 3B, HR, RBI, SB, CS, BB, SO, IBB, HBP, SH, SF, GIDP, G_old</p>
+<p>which stand for:</p>
+<p>G=games, AB=at bats, R=runs, H=hits, 2B=doubles, 3B=triples, HR=dinger, RBI=runs batted in, SB=stolen base, CS=caught stealing, BB=base on balls, SO=strikeout, IBB=intentional walks, HBP=hit by pitch, SH=sacrifice hits, SF=sacrifice flys, GIDP=ground into double play</p>
+<p>In this program, we will simply output the maximum number of runs made by one player for each year.</p>
+<ul>
+<li>Load the csv file <a href="../resources/Batting.csv" target="_blank">Batting.csv</a> into your home folder in HDFS:</li>
+</ul>
+<div class="codehilite"><pre><span></span>hdfs dfs -copyFromLocal Batting.csv /user/<span class="k">$(</span>whoami<span class="k">)</span>
+</pre></div>
+
+<h2 id="create-a-database-in-hive">Create a database in Hive</h2>
+<p>Note: In order to have this tutorial to work for everybody, let's create a database prefixed by your username (<code class="codehilite"><span class="cp">${</span><span class="n">env</span><span class="p">:</span><span class="n">USER</span><span class="cp">}</span></code> inside hive).</p>
+<p>Type the "hive" command to start the hive shell, and continue as follows:</p>
+<div class="codehilite"><pre><span></span>$ hive
+
+create database <span class="si">${</span><span class="nv">env</span><span class="p">:</span><span class="nv">USER</span><span class="si">}</span>_test<span class="p">;</span>
+</pre></div>
+
+<h2 id="create-a-temp-table-to-load-the-file-into">Create a temp table to load the file into</h2>
+<div class="codehilite"><pre><span></span><span class="err">$</span> <span class="n">hive</span>
+
+<span class="n">use</span> <span class="err">${</span><span class="n">env</span><span class="p">:</span><span class="k">USER</span><span class="err">}</span><span class="n">_test</span><span class="p">;</span>
+<span class="k">create</span> <span class="k">table</span> <span class="n">temp_batting</span> <span class="p">(</span><span class="n">col_value</span> <span class="n">STRING</span><span class="p">);</span>
+<span class="k">LOAD</span> <span class="k">DATA</span> <span class="n">INPATH</span> <span class="s1">&#39;/user/${env:USER}/Batting.csv&#39;</span> <span class="n">OVERWRITE</span> <span class="k">INTO</span> <span class="k">TABLE</span> <span class="n">temp_batting</span><span class="p">;</span>
+</pre></div>
+
+<h2 id="create-the-final-table-and-insert-the-data-into">Create the final table and insert the data into</h2>
+<div class="codehilite"><pre><span></span><span class="err">$</span> <span class="n">hive</span>
+
+<span class="n">use</span> <span class="err">${</span><span class="n">env</span><span class="p">:</span><span class="k">USER</span><span class="err">}</span><span class="n">_test</span><span class="p">;</span>
+<span class="k">create</span> <span class="k">table</span> <span class="n">batting</span> <span class="p">(</span><span class="n">player_id</span> <span class="n">STRING</span><span class="p">,</span> <span class="k">year</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">runs</span> <span class="nb">INT</span><span class="p">);</span>
+<span class="k">insert</span> <span class="n">overwrite</span> <span class="k">table</span> <span class="n">batting</span>
+<span class="k">SELECT</span>
+<span class="n">regexp_extract</span><span class="p">(</span><span class="n">col_value</span><span class="p">,</span> <span class="s1">&#39;^(?:([^,]*)\,?){1}&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="n">player_id</span><span class="p">,</span>
+<span class="n">regexp_extract</span><span class="p">(</span><span class="n">col_value</span><span class="p">,</span> <span class="s1">&#39;^(?:([^,]*)\,?){2}&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">year</span><span class="p">,</span>
+<span class="n">regexp_extract</span><span class="p">(</span><span class="n">col_value</span><span class="p">,</span> <span class="s1">&#39;^(?:([^,]*)\,?){9}&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="n">run</span>
+<span class="k">from</span> <span class="n">temp_batting</span><span class="p">;</span>
+</pre></div>
+
+<h2 id="run-your-first-query">Run your first query</h2>
+<div class="codehilite"><pre><span></span><span class="err">$</span> <span class="n">hive</span> <span class="c1">--database ${USER}_test</span>
+
+<span class="k">SELECT</span> <span class="k">year</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">batting</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">year</span><span class="p">;</span>
+</pre></div>
+
+<h2 id="run-a-more-complex-query">Run a more complex query</h2>
+<div class="codehilite"><pre><span></span><span class="err">$</span> <span class="n">hive</span> <span class="c1">--database ${USER}_test</span>
+
+<span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="k">year</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">player_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">runs</span> <span class="k">from</span> <span class="n">batting</span> <span class="n">a</span>
+<span class="k">JOIN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">year</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="n">runs</span> <span class="k">FROM</span> <span class="n">batting</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">year</span> <span class="p">)</span> <span class="n">b</span>
+<span class="k">ON</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="k">year</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="k">year</span> <span class="k">AND</span> <span class="n">a</span><span class="p">.</span><span class="n">runs</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">runs</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+<h2 id="hive-external-table">Hive external table</h2>
+<p>As you might have noticed, with hive "normal" tables, you need to upload the data in HDFS,
+create a temp table, load the data into this temp table, create another, final,
+table and eventually copy and format the data from the temp table to the final one.</p>
+<p>Another idea is to rely on hive external table, which will read the data directly from the CSV file.</p>
+<p>Let's create a table mapping the CSV file and run a query on top of it.</p>
+<p>Note: the external table location (where the data is physically stored)
+<strong>MUST</strong> be a folder. We'll change the directory structure to accommodate this requirement.</p>
+<div class="codehilite"><pre><span></span>hdfs dfs -mkdir /user/<span class="k">$(</span>whoami<span class="k">)</span>/Batting
+hdfs dfs -copyFromLocal Batting.csv /user/<span class="k">$(</span>whoami<span class="k">)</span>/Batting <span class="c1"># note here that the file needs to be re-uploaded because the LOAD DATA consumed (and removed the file)</span>
+</pre></div>
+
+<p>And then create the external table</p>
+<div class="codehilite"><pre><span></span><span class="err">$</span> <span class="n">hive</span> <span class="c1">--database ${USER}_test</span>
+
+<span class="k">create</span> <span class="k">EXTERNAL</span> <span class="k">table</span> <span class="n">batting_ext</span> <span class="p">(</span><span class="n">player_id</span> <span class="n">STRING</span><span class="p">,</span> <span class="k">year</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">stint</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">team</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">lg</span> <span class="n">STRING</span><span class="p">,</span> <span class="k">G</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">G_batting</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">AB</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">runs</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">H</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">x2B</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">x3B</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">HR</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">RBI</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">SB</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">CS</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">BB</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">SO</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">IBB</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">HBP</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">SH</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">SF</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">GIDP</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">G_Old</span> <span class="n">STRING</span><span class="p">)</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span>
+<span class="n">DELIMITED</span> <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;,&#39;</span>
+<span class="n">LINES</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39;\n&#39;</span>
+<span class="n">STORED</span> <span class="k">AS</span> <span class="n">TEXTFILE</span>
+<span class="k">LOCATION</span> <span class="s1">&#39;/user/${env:USER}/Batting/&#39;</span><span class="p">;</span>
+</pre></div>
+
+<p>Let's run the two queries</p>
+<div class="codehilite"><pre><span></span><span class="err">$</span> <span class="n">hive</span> <span class="c1">--database ${USER}_test</span>
+
+<span class="k">SELECT</span> <span class="k">year</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">batting_ext</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">year</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="n">a</span><span class="p">.</span><span class="k">year</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">player_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">runs</span> <span class="k">from</span> <span class="n">batting_ext</span> <span class="n">a</span>
+<span class="k">JOIN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">year</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span> <span class="n">runs</span> <span class="k">FROM</span> <span class="n">batting_ext</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">year</span> <span class="p">)</span> <span class="n">b</span>
+<span class="k">ON</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="k">year</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="k">year</span> <span class="k">AND</span> <span class="n">a</span><span class="p">.</span><span class="n">runs</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">runs</span><span class="p">)</span> <span class="p">;</span>
+</pre></div>
+
+<h2 id="cleanup">Cleanup</h2>
+<p>Once you're done, you can cleanup your environment, deleting the tables and the database.</p>
+<div class="codehilite"><pre><span></span><span class="err">$</span> <span class="n">hive</span>
+
+<span class="k">drop</span> <span class="k">table</span> <span class="n">temp_batting</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="n">batting</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="n">batting_ext</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">database</span> <span class="err">${</span><span class="n">env</span><span class="p">:</span><span class="k">USER</span><span class="err">}</span><span class="n">_test</span><span class="p">;</span>
+</pre></div>
                 
                   
                 
