@@ -227,13 +227,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#listing-the-tmp-folder" title="Listing the /tmp folder" class="md-nav__link">
-    Listing the /tmp folder
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#uploading-a-resource" title="Uploading a resource" class="md-nav__link">
     Uploading a resource
   </a>
@@ -404,13 +397,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#listing-the-tmp-folder" title="Listing the /tmp folder" class="md-nav__link">
-    Listing the /tmp folder
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#uploading-a-resource" title="Uploading a resource" class="md-nav__link">
     Uploading a resource
   </a>
@@ -475,7 +461,7 @@
                 
                 <p>In order to use HADOOP, it is crucial that you understand the basic functioning of HDFS, as well as some of its constraints.
 After a brief introduction of core HDFS concepts, this page presents <em>copy-paste</em>-like tutorial to familiarize with
-<a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html">HDFS commands</a>.
+<a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html" target="_blank">HDFS commands</a>.
 It mainly focuses on user commands (uploading and downloading data into HDFS).</p>
 <h2 id="resources">Resources</h2>
 <p>While the source of truth for HDFS commands is the code source, the <a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html" target="_blank">documentation page describing the <code class="codehilite">hdfs dfs</code> commands</a> is really useful.</p>
@@ -502,12 +488,14 @@ fault tolerant and suitable for large data sets and gives high throughput.</p>
 <p><img alt="HDFS architecture" src="../resources/hdfs-architecture.png" /></p>
 <hr />
 <h2 id="basic-manipulations">Basic Manipulations</h2>
+<p>To interact with HDFS you should use the <strong>dfs</strong> module.
+The dfs module, also known as "FS shell", provides basic file manipulation operations.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>In HDFS, user's folders are stored in <code class="codehilite">/user</code> and not <code class="codehilite">/home</code> like traditional Unix/Linux filesystems.</p>
 </div>
 <h3 id="listing-your-home-folder">Listing your home folder</h3>
-<div class="codehilite"><pre><span></span> $ hdfs dfs -ls
+<div class="codehilite"><pre><span></span> $ hdfs dfs -ls /user/&lt;your_user&gt;
  Found <span class="m">28</span> items
  ...
  -rw-r--r--   <span class="m">3</span> llinder  daplab_users   <span class="m">6398990</span> <span class="m">2015</span>-03-13 <span class="m">11</span>:01 data.csv
@@ -516,6 +504,10 @@ fault tolerant and suitable for large data sets and gives high throughput.</p>
           <span class="m">1</span>   <span class="m">2</span>        <span class="m">3</span>            <span class="m">4</span>         <span class="m">5</span>          <span class="m">6</span>     <span class="m">7</span>        <span class="m">8</span>
 </pre></div>
 
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Relative paths points to your home folder, using : <code class="codehilite">hdfs dfs -ls /user/&lt;your_user&gt;</code> is the same as <code class="codehilite">hdfs dfs -ls</code></p>
+</div>
 <p>Columns, as numbered below, represent:</p>
 <ol>
 <li>Permissions, in <a href="http://en.wikipedia.org/wiki/File_system_permissions#Notation_of_traditional_Unix_permissions unix-style" target="_blank">traditional unix permission</a> syntax;</li>
@@ -528,48 +520,40 @@ this date often means creation date;</li>
 <li>Modification time. Same as date;</li>
 <li>Filename, within the listed folder.</li>
 </ol>
-<h3 id="listing-the-tmp-folder">Listing the <code class="codehilite">/tmp</code> folder</h3>
-<p>The only change is that you specify an absolute path from the root of the filesystem (<code class="codehilite">/</code>):
-<div class="codehilite"><pre><span></span>hdfs dfs -ls /tmp
-</pre></div></p>
 <h3 id="uploading-a-resource">Uploading a resource</h3>
 <p>To put a file to HDFS, you have two choices. You can use <code class="codehilite">hdfs</code> with the <code class="codehilite">-put</code> option or with the <code class="codehilite">-copyFromLocal</code> option:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># uploading a file</span>
-hdfs dfs -put localfile.txt /tmp
-hdfs dfs -copyFromLocal localfile.txt /tmp/
+hdfs dfs -put localfile.txt /user/&lt;your_user&gt;
+hdfs dfs -copyFromLocal localfile.txt /user/&lt;your_user&gt;
 <span class="c1"># uploading a directory </span>
-hdfs dfs -put localdir /tmp
-hdfs dfs -copyFromLocal localdir /tmp/
+hdfs dfs -put localdir /user/&lt;your_user&gt;
+hdfs dfs -copyFromLocal localdir /user/&lt;your_user&gt;
 </pre></div>
 
-<p>The first arguments after <code class="codehilite">-copyFromLocal</code> or <code class="codehilite">-put</code> point to local files or folders, while the last argument is a file (if only one file listed as source) or directory in HDFS. Note that you can use wildcards and also rename files and folders when copying, exactly as you would do in a linux shell:</p>
+<p>The first arguments after <code class="codehilite">-copyFromLocal</code> or <code class="codehilite">-put</code> point to local files or folders, while the last argument is a file (if only one file listed as source) or directory in HDFS. Note that you can rename files and folders when copying, exactly as you would do in a linux shell:</p>
 <div class="codehilite"><pre><span></span><span class="c1"># uploading all files in the current directory with the .txt extension</span>
-hdfs dfs -put *.txt /tmp
-hdfs dfs -copyFromLocal *.txt /tmp/
+hdfs dfs -put *.txt /user/&lt;your_user&gt;
+hdfs dfs -copyFromLocal *.txt /user/&lt;your_user&gt;
 <span class="c1"># uploading a directory and renaming it hdfsdir</span>
-hdfs dfs -put localdir /tmp/hdfsdir
-hdfs dfs -copyFromLocal localdir /tmp/hdfsdir
+hdfs dfs -put localdir /user/&lt;your_user&gt;/hdfsdir
+hdfs dfs -copyFromLocal localdir /user/&lt;your_user&gt;/hdfsdir
 </pre></div>
 
-<p>Both options are doing about the same thing, but <code class="codehilite">-copyFromLocal</code> is more explicit when you're uploading a local file and thus preferred.</p>
 <h3 id="downloading-a-resource">Downloading a resource</h3>
 <p>Download is the same as uploading, but <code class="codehilite">-put</code> becomes <code class="codehilite">-get</code> and <code class="codehilite">-copyFromLocal</code> becomes <code class="codehilite">-copyToLocal</code>:</p>
-<div class="codehilite"><pre><span></span>hdfs dfs -get /tmp/remotefile.txt .
-hdfs dfs -copyToLocal /tmp/remotefile.txt .
+<div class="codehilite"><pre><span></span>hdfs dfs -get /user/&lt;your_user&gt;/remotefile.txt .
+hdfs dfs -copyToLocal /user/&lt;your_user&gt;/remotefile.txt .
 </pre></div>
 
 <h2 id="creating-a-folder">Creating a folder</h2>
 <p>To create a folder, use <code class="codehilite">-mkdir</code></p>
 <div class="codehilite"><pre><span></span><span class="c1"># create a folder in your hdfs home</span>
 hdfs dfs -mkdir dummy-folder
-<span class="c1"># create a folder in /tmp</span>
-hdfs dfs -mkdir /tmp/dummy-folder
 </pre></div>
 
-<p>Note that relative paths points to your home folder,  <code class="codehilite">/user/llinder</code> for instance.</p>
 <h3 id="removing-resources">Removing resources</h3>
 <p>To remove individual files, use the <code class="codehilite">-rm</code> option:</p>
-<div class="codehilite"><pre><span></span>hdfs dfs -rm /tmp/somefile.txt
+<div class="codehilite"><pre><span></span>hdfs dfs -rm /user/&lt;your_user&gt;/somefile.txt
 </pre></div>
 
 <p>To remove a folder, the option is <code class="codehilite">-rmdir</code> for an empty directory and <code class="codehilite">-rm -r</code> for a non-empty one. The <code class="codehilite">-r</code> in <code class="codehilite">-rm -r</code> means <em>recursive</em>: it removes the folder and all its children recursively:</p>
