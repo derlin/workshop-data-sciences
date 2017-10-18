@@ -12,10 +12,6 @@ This tutorial is heavily inspired from the HortonWorks tutorial and is illustrat
 
 * [http://hortonworks.com/hadoop-tutorial/how-to-process-data-with-apache-hive/](http://hortonworks.com/hadoop-tutorial/how-to-process-data-with-apache-hive/){: target="_blank"}
 
-## Creating a database, a table and loading data
-
-Note: In order to have this tutorial to work for everybody, let's create a database prefixed by your username (`${env:USER}` inside hive)
-
 ## Data Preparation
 
 Here, we will use a CSV file with batting records, i.e. statistics about baseball players for each year.
