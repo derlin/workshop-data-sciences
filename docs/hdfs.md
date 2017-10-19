@@ -113,7 +113,7 @@ hdfs dfs -get /user/<your_user>/remotefile.txt .
 hdfs dfs -copyToLocal /user/<your_user>/remotefile.txt .
 ```
 
-## Creating a folder
+### Creating a folder
 
 To create a folder, use `-mkdir`
 
