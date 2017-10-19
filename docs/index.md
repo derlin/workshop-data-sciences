@@ -51,12 +51,15 @@ For the workshop, you will need the following:
     * [Windows](https://docs.docker.com/docker-for-windows/install/){: target="_blank"} installation guide
     * [Mac](https://docs.docker.com/docker-for-mac/install/){: target="_blank"} installation guide
 - Snorkel:
-    - follow the instruction at [https://github.com/Sqooba/snorkel](https://github.com/Sqooba/snorkel){: target="_blank"} or have a look at the section below.
+    - follow the instruction at [https://github.com/Sqooba/snorkel](https://github.com/Sqooba/snorkel){: target="_blank"} or have a look at the section below. 
+    
+        !!! warning ""
+            For Windows, I added some scripts at [https://github.com/derlin/snorkel](https://github.com/derlin/snorkel){: target="_blank"}, the pull request is still in review. Use mine for now.
 
 ## Setting up Snorkel
 
 
-!!! Error ""
+!!! warning ""
     You need Docker running on your machine. 
 
 Snorkel is a docker container allowing you to run Zeppelin locally.
@@ -77,21 +80,19 @@ Snorkel is a docker container allowing you to run Zeppelin locally.
         ```
         ./build-images.sh
         ```
-    * On Windows (from the command prompt or the powershell):
+    * On Windows:
         ```
-        cd zeppelin
-        docker build . -t sqooba/zeppelin-starter
-        cd ..
+        ./build-images.cmd
         ```
 
 4. start zeppelin:
     * On Mac/Linux:
         ```
-        ./start-zeppelin.sh
+        ./zeppelin.sh --start
         ```
     * On Windows (from the command prompt or the powershell):
         ```
-        ./start-zeppelin.bat
+        ./start-zeppelin.cmd
         ```
 
 5. check that zeppelin is running: 
@@ -100,9 +101,9 @@ Snorkel is a docker container allowing you to run Zeppelin locally.
 6. stop zeppelin:
     * On Mac/Linux:
         ```
-        ./stop-zeppelin.sh
+        ./zeppelin.sh --stop
         ```
     * On Windows (from the command prompt or the powershell):
         ```
-        ./stop-zeppelin.bat
+        ./stop-zeppelin.cmd
         ```
