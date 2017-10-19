@@ -102,7 +102,26 @@ hdfs dfs -copyFromLocal *.txt /user/<your_user>
 hdfs dfs -put localdir /user/<your_user>/hdfsdir
 hdfs dfs -copyFromLocal localdir /user/<your_user>/hdfsdir
 ```
+### Uploading data for next sessions:
 
+* Now lets upload the data that we will use for MapReduce and Hive:
+
+1) Bible Shakespear Data:
+
+* Download [bible_shakespear](resources/bible_shakes.nopunc.gz){: target="_blank"} data set
+* Decompress and upload to HDFS:
+
+```shell
+hdfs dfs -put bible_shakes.nopunc /user/<your_user>
+```
+2) Batting Data:
+
+* Download the csv file [Batting.csv](resources/Batting.csv){: target="_blank"}
+* Upload to HDFS:
+
+```shell
+hdfs dfs -put Batting.csv /user/<your_user>
+```
 
 ### Downloading a resource
 
