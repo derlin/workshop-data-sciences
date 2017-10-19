@@ -238,15 +238,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementation-tips" title="Implementation Tips" class="md-nav__link">
-    Implementation Tips
+  <a href="#implementation-pointers" title="Implementation Pointers" class="md-nav__link">
+    Implementation Pointers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#number-of-mappers-and-reducers" title="Number of Mappers and Reducers" class="md-nav__link">
+    Number of Mappers and Reducers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-map-only-jobs" title="Creating Map only jobs" class="md-nav__link">
+    Creating Map only jobs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combiners" title="Combiners" class="md-nav__link">
+    Combiners
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-2-bigrams-count" title="Example 2 - Bigrams count" class="md-nav__link">
+    Example 2 - Bigrams count
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bigrams-count" title="Bigrams count" class="md-nav__link">
-    Bigrams count
+  <a href="#further-exercises" title="Further exercises" class="md-nav__link">
+    Further exercises
   </a>
   
 </li>
@@ -363,15 +397,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementation-tips" title="Implementation Tips" class="md-nav__link">
-    Implementation Tips
+  <a href="#implementation-pointers" title="Implementation Pointers" class="md-nav__link">
+    Implementation Pointers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#number-of-mappers-and-reducers" title="Number of Mappers and Reducers" class="md-nav__link">
+    Number of Mappers and Reducers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-map-only-jobs" title="Creating Map only jobs" class="md-nav__link">
+    Creating Map only jobs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combiners" title="Combiners" class="md-nav__link">
+    Combiners
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-2-bigrams-count" title="Example 2 - Bigrams count" class="md-nav__link">
+    Example 2 - Bigrams count
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bigrams-count" title="Bigrams count" class="md-nav__link">
-    Bigrams count
+  <a href="#further-exercises" title="Further exercises" class="md-nav__link">
+    Further exercises
   </a>
   
 </li>
@@ -400,6 +468,7 @@
 <li>Fault tolerance</li>
 <li>Abstraction for programmers</li>
 </ul>
+<p>Refer to <a href="https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html" target="_blank">MapReduce Tutorial</a> for more details.</p>
 <h2 id="mapreduce-framework">MapReduce Framework</h2>
 <p><img alt="Mapreduce Framework" src="../resources/mapreduce_framework.png" /></p>
 <h2 id="mapreduce-phases">MapReduce Phases</h2>
@@ -412,7 +481,7 @@
 </ul>
 <p><strong>Partition - Shuffle and sort phase</strong></p>
 <ul>
-<li>Partitioner: Determines which partition a given (key,value) pair will go to</li>
+<li>Partitioner: Guarantees all pairs with the same key go to the same Reduce</li>
 <li>Shuffling: Moving map outputs to the reducers</li>
 <li>Sorting: The set of intermediate keys on a single node is sorted before passing to the reducer</li>
 </ul>
@@ -539,14 +608,51 @@
 <ul>
 <li>Examine the output in HDFS</li>
 </ul>
-<h2 id="implementation-tips">Implementation Tips</h2>
+<h2 id="implementation-pointers">Implementation Pointers</h2>
+<h3 id="number-of-mappers-and-reducers">Number of Mappers and Reducers</h3>
 <ul>
-<li>Input splits</li>
-<li>Counters</li>
-<li>Distributed cache</li>
-<li>Number of mappers and reducers</li>
+<li>The number of mappers typically depends on the input data and the block size</li>
+<li>The number of reducers can be set in your driver code, as follows:</li>
 </ul>
-<h2 id="bigrams-count">Bigrams count</h2>
+<div class="codehilite"><pre><span></span><span class="n">job</span><span class="o">.</span><span class="na">setNumReduceTasks</span><span class="o">(</span><span class="n">numReducers</span><span class="o">);</span>
+</pre></div>
+
+<ul>
+<li>Having only one reducer for large input data can cause a bottleneck</li>
+<li>To many reducers will create extensive network traffic</li>
+</ul>
+<h3 id="creating-map-only-jobs">Creating Map only jobs</h3>
+<p>Some jobs only require a map task. For example, file conversions, and data sampling.</p>
+<p>To create a map only job:</p>
+<ul>
+<li>Set the number of reducers to 0:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">job</span><span class="o">.</span><span class="na">setNumReduceTasks</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</pre></div>
+
+<ul>
+<li>Specify output types:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">job</span><span class="o">.</span><span class="na">setOutputKeyClass</span><span class="o">(</span><span class="n">Text</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="n">job</span><span class="o">.</span><span class="na">setOutputValueClass</span><span class="o">(</span><span class="n">IntWritable</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</pre></div>
+
+<h3 id="combiners">Combiners</h3>
+<ul>
+<li>
+<p>We can introduce an additional step for optimizing bandwidth usage in our MapReduce job.</p>
+</li>
+<li>
+<p>The combiner is a “mini reduce” process which operates on data generated by one node to reduce the network traffic</p>
+</li>
+<li>
+<p>To add a combiner in our word count example, add the following line in the driver code:</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">job</span><span class="o">.</span><span class="na">setReducerClass</span><span class="o">(</span><span class="n">WCReducer</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</pre></div>
+
+<h2 id="example-2-bigrams-count">Example 2 - Bigrams count</h2>
 <ul>
 <li>Use the <a href="../resources/bible_shakes.nopunc.gz" target="_blank">bible_shakespear</a> data set again</li>
 <li>Write a MapReduce program to count the co-occurrences of pairs of words</li>
@@ -576,7 +682,10 @@
     <span class="n">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
 <span class="n">result</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
 <span class="n">context</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
-</pre></div></li></ul></details>
+</pre></div></li></ul></details><h2 id="further-exercises">Further exercises</h2>
+<ul>
+<li>Length Histogram: Write a MapReduce program to count the occurrences for ranges of lengths of words.</li>
+</ul>
                 
                   
                 
