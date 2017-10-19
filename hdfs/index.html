@@ -234,6 +234,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#uploading-data-for-next-sessions" title="Uploading data for next sessions:" class="md-nav__link">
+    Uploading data for next sessions:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#downloading-a-resource" title="Downloading a resource" class="md-nav__link">
     Downloading a resource
   </a>
@@ -398,6 +405,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#uploading-data-for-next-sessions" title="Uploading data for next sessions:" class="md-nav__link">
+    Uploading data for next sessions:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#downloading-a-resource" title="Downloading a resource" class="md-nav__link">
     Downloading a resource
   </a>
@@ -525,6 +539,25 @@ hdfs dfs -copyFromLocal *.txt /user/&lt;your_user&gt;
 <span class="c1"># uploading a directory and renaming it hdfsdir</span>
 hdfs dfs -put localdir /user/&lt;your_user&gt;/hdfsdir
 hdfs dfs -copyFromLocal localdir /user/&lt;your_user&gt;/hdfsdir
+</pre></div>
+
+<h3 id="uploading-data-for-next-sessions">Uploading data for next sessions:</h3>
+<ul>
+<li>Now lets upload the data that we will use for MapReduce and Hive:</li>
+</ul>
+<p>1) Bible Shakespear Data:</p>
+<ul>
+<li>Download <a href="../resources/bible_shakes.nopunc.gz" target="_blank">bible_shakespear</a> data set</li>
+<li>Decompress and upload to HDFS:</li>
+</ul>
+<p><div class="codehilite"><pre><span></span>hdfs dfs -put bible_shakes.nopunc /user/&lt;your_user&gt;
+</pre></div>
+2) Batting Data:</p>
+<ul>
+<li>Download the csv file <a href="../resources/Batting.csv" target="_blank">Batting.csv</a></li>
+<li>Upload to HDFS:</li>
+</ul>
+<div class="codehilite"><pre><span></span>hdfs dfs -put Batting.csv /user/&lt;your_user&gt;
 </pre></div>
 
 <h3 id="downloading-a-resource">Downloading a resource</h3>
