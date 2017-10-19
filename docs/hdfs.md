@@ -1,6 +1,6 @@
 In order to use HADOOP, it is crucial that you understand the basic functioning of HDFS, as well as some of its constraints.
 After a brief introduction of core HDFS concepts, this page presents _copy-paste_-like tutorial to familiarize with
-[HDFS commands](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html).
+[HDFS commands](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html){:target="_blank"}.
 It mainly focuses on user commands (uploading and downloading data into HDFS).
 
 ## Resources
@@ -44,13 +44,16 @@ An HDFS cluster consists of a single __NameNode__, a master server that manages 
 
 ## Basic Manipulations
 
+To interact with HDFS you should use the __dfs__ module.
+The dfs module, also known as "FS shell", provides basic file manipulation operations.
+
 !!! Info
     In HDFS, user's folders are stored in `/user` and not `/home` like traditional Unix/Linux filesystems.
 
 ### Listing your home folder
 
 ```shell
- $ hdfs dfs -ls
+ $ hdfs dfs -ls /user/<your_user>
  Found 28 items
  ...
  -rw-r--r--   3 llinder  daplab_users   6398990 2015-03-13 11:01 data.csv
@@ -58,6 +61,9 @@ An HDFS cluster consists of a single __NameNode__, a master server that manages 
  ^^^^^^^^^^   ^ ^^^^^^^^ ^^^^^^^^^^^^   ^^^^^^^ ^^^^^^^^^^ ^^^^^ ^^^^^^^^
           1   2        3            4         5          6     7        8
 ```
+
+!!! Info
+    Relative paths points to your home folder, using : `hdfs dfs -ls /user/<your_user>` is the same as `hdfs dfs -ls`
 
 Columns, as numbered below, represent:
 
@@ -71,12 +77,7 @@ this date often means creation date;
 7. Modification time. Same as date;
 8. Filename, within the listed folder.
 
-### Listing the `/tmp` folder
 
-The only change is that you specify an absolute path from the root of the filesystem (`/`):
-```shell
-hdfs dfs -ls /tmp
-```
 
 ### Uploading a resource
 
@@ -84,34 +85,32 @@ To put a file to HDFS, you have two choices. You can use `hdfs` with the `-put` 
 
 ```shell
 # uploading a file
-hdfs dfs -put localfile.txt /tmp
-hdfs dfs -copyFromLocal localfile.txt /tmp/
+hdfs dfs -put localfile.txt /user/<your_user>
+hdfs dfs -copyFromLocal localfile.txt /user/<your_user>
 # uploading a directory 
-hdfs dfs -put localdir /tmp
-hdfs dfs -copyFromLocal localdir /tmp/
+hdfs dfs -put localdir /user/<your_user>
+hdfs dfs -copyFromLocal localdir /user/<your_user>
 ```
 
-The first arguments after `-copyFromLocal` or `-put` point to local files or folders, while the last argument is a file (if only one file listed as source) or directory in HDFS. Note that you can use wildcards and also rename files and folders when copying, exactly as you would do in a linux shell:
+The first arguments after `-copyFromLocal` or `-put` point to local files or folders, while the last argument is a file (if only one file listed as source) or directory in HDFS. Note that you can rename files and folders when copying, exactly as you would do in a linux shell:
 
 ```shell
 # uploading all files in the current directory with the .txt extension
-hdfs dfs -put *.txt /tmp
-hdfs dfs -copyFromLocal *.txt /tmp/
+hdfs dfs -put *.txt /user/<your_user>
+hdfs dfs -copyFromLocal *.txt /user/<your_user>
 # uploading a directory and renaming it hdfsdir
-hdfs dfs -put localdir /tmp/hdfsdir
-hdfs dfs -copyFromLocal localdir /tmp/hdfsdir
+hdfs dfs -put localdir /user/<your_user>/hdfsdir
+hdfs dfs -copyFromLocal localdir /user/<your_user>/hdfsdir
 ```
 
-
-Both options are doing about the same thing, but `-copyFromLocal` is more explicit when you're uploading a local file and thus preferred.
 
 ### Downloading a resource
 
 Download is the same as uploading, but `-put` becomes `-get` and `-copyFromLocal` becomes `-copyToLocal`:
 
 ```shell
-hdfs dfs -get /tmp/remotefile.txt .
-hdfs dfs -copyToLocal /tmp/remotefile.txt .
+hdfs dfs -get /user/<your_user>/remotefile.txt .
+hdfs dfs -copyToLocal /user/<your_user>/remotefile.txt .
 ```
 
 ## Creating a folder
@@ -121,18 +120,16 @@ To create a folder, use `-mkdir`
 ```shell
 # create a folder in your hdfs home
 hdfs dfs -mkdir dummy-folder
-# create a folder in /tmp
-hdfs dfs -mkdir /tmp/dummy-folder
 ```
 
-Note that relative paths points to your home folder,  `/user/llinder` for instance.
+
 
 ### Removing resources
 
 To remove individual files, use the `-rm` option:
 
 ```shell
-hdfs dfs -rm /tmp/somefile.txt
+hdfs dfs -rm /user/<your_user>/somefile.txt
 ```
 
 To remove a folder, the option is `-rmdir` for an empty directory and `-rm -r` for a non-empty one. The `-r` in `-rm -r` means _recursive_: it removes the folder and all its children recursively:
