@@ -17,6 +17,7 @@ It will be given in French, with support in English.
 __Day 1__:
 
 - Introduction: Big Data, Hadoop, HDFS, what are they ?
+    * Check out the slides: [Big Data: an Introduction](resources/BigData_ITValley_Workshop.pdf){: target="_blank"}
 - HDFS: filesystem and command line usage
 - MapReduce:
     * _theory_: what is MapReduce ?
