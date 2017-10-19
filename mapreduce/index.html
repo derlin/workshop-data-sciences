@@ -512,15 +512,32 @@
 
 <h3 id="running-the-program">Running the program</h3>
 <ul>
-<li>Download [source code] for word count example</li>
-<li>Compile the code and create a jar</li>
-<li>We will use the same [data set] which should be already loaded to HDFS</li>
-<li>Use the following command to execute the job:</li>
+<li>Download <a href="../resources/bible_shakes.nopunc.gz" target="_blank">bible_shakespear</a> data set</li>
+<li>Decompress and move to HDFS</li>
 </ul>
-<p><code class="codehilite"><span class="cp">${</span><span class="n">HADOOP_HOME</span><span class="cp">}</span>/bin/hadoop jar <span class="nt">&lt;jar</span><span class="err">-name</span><span class="nt">&gt;</span>  <span class="nt">&lt;main</span><span class="err">-class</span><span class="nt">&gt;</span> <span class="nt">&lt;input</span><span class="err">-path</span><span class="nt">&gt;</span> <span class="nt">&lt;output</span><span class="err">-path</span><span class="nt">&gt;</span></code></p>
+<div class="codehilite"><pre><span></span>hdfs dfs -put bible_shakes.nopunc /user/&lt;your_user&gt;
+</pre></div>
+
 <ul>
-<li>Examine the logs</li>
-<li>Examine the output</li>
+<li>Download source code for <a href="../resources/wordcount.zip" target="_blank">word count example</a></li>
+<li>Compile the code and create a jar (You can download this <a href="../resources/wordcount.jar" target="_blank">wordcount.jar</a> for testing)</li>
+<li>To execute a MapReduce job:</li>
+</ul>
+<div class="codehilite"><pre><span></span>/bin/hadoop jar &lt;jar-name&gt; &lt;main-class&gt; &lt;input-path&gt; &lt;output-path&gt;
+</pre></div>
+
+<ul>
+<li>Use the following command to run our example:</li>
+</ul>
+<div class="codehilite"><pre><span></span>/bin/hadoop jar wordcount.jar  exascale.info.lab.wordcount.WordCount /user/&lt;your_user&gt;/bible_shakes.nopunc /user/&lt;your_user&gt;/&lt;output_folder&gt;
+</pre></div>
+
+<ul>
+<li>Monitor the job status and examine the logs:</li>
+</ul>
+<p><a href="https://hadoop-rm.daplab.ch/cluster" target="_blank">https://hadoop-rm.daplab.ch/cluster</a></p>
+<ul>
+<li>Examine the output in HDFS</li>
 </ul>
 <h2 id="implementation-tips">Implementation Tips</h2>
 <ul>
@@ -531,12 +548,35 @@
 </ul>
 <h2 id="bigrams-count">Bigrams count</h2>
 <ul>
-<li>Write a MapReduce program to count the co-occurrences of pairs of words in the [data set]</li>
-<li>For simplicity, you can use this [code helper] program structure and build upon it</li>
+<li>Use the <a href="../resources/bible_shakes.nopunc.gz" target="_blank">bible_shakespear</a> data set again</li>
+<li>Write a MapReduce program to count the co-occurrences of pairs of words</li>
+<li>For simplicity, you can use this <a href="../resources/bigrams_Helper.zip" target="_blank">bigrams_Helper.zip</a> program structure and build upon it</li>
 <li>Monitor the progress of your job</li>
 <li>Examine the output</li>
 <li>Use the combiner class to optimize your job</li>
 </ul>
+<details class="solution"><summary>Solution</summary><p>Mapper class:</p><ul><li>First we need to convert the Text value recieved by each map to String[]:
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">textToString</span><span class="o">(</span><span class="n">Text</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">();</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;[^a-z]+&quot;</span><span class="o">,</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;^\\s+&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+    <span class="n">StringTokenizer</span> <span class="n">itr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringTokenizer</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">itr</span><span class="o">.</span><span class="na">hasMoreTokens</span><span class="o">())</span>
+        <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">itr</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+    <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">toArray</span><span class="o">(),</span><span class="n">result</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span><span class="n">String</span><span class="o">[].</span><span class="na">class</span><span class="o">);}</span>
+</pre></div></li><li>Then we can loop over the String[] object and extract bigrams:
+<div class="codehilite"><pre><span></span><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Tokens</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">word</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Tokens</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span>  <span class="n">Tokens</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]);</span>
+    <span class="n">context</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="n">one</span><span class="o">);}</span>
+</pre></div></li></ul><p>Reducer class:</p><ul><li>We can use the same reducer as in the word count example, because we need to sum the values of the received keys (in this case the keys emitted by the mappers are bigrams):
+<div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">IntWritable</span> <span class="n">value</span> <span class="o">:</span> <span class="n">values</span><span class="o">)</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+<span class="n">result</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+<span class="n">context</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+</pre></div></li></ul></details>
                 
                   
                 
