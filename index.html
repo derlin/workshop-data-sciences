@@ -325,7 +325,10 @@
 <h2 id="schedule">Schedule</h2>
 <p><strong>Day 1</strong>:</p>
 <ul>
-<li>Introduction: Big Data, Hadoop, HDFS, what are they ?</li>
+<li>Introduction: Big Data, Hadoop, HDFS, what are they ?<ul>
+<li>Check out the slides: <a href="./resources/BigData_ITValley_Workshop.pdf" target="_blank">Big Data: an Introduction</a></li>
+</ul>
+</li>
 <li>HDFS: filesystem and command line usage</li>
 <li>MapReduce:<ul>
 <li><em>theory</em>: what is MapReduce ?</li>
@@ -372,12 +375,17 @@
 </ul>
 </li>
 <li>Snorkel:<ul>
-<li>follow the instruction at <a href="https://github.com/Sqooba/snorkel" target="_blank">https://github.com/Sqooba/snorkel</a> or have a look at the section below.</li>
+<li>
+<p>follow the instruction at <a href="https://github.com/Sqooba/snorkel" target="_blank">https://github.com/Sqooba/snorkel</a> or have a look at the section below. </p>
+<div class="admonition warning">
+<p>For Windows, I added some scripts at <a href="https://github.com/derlin/snorkel" target="_blank">https://github.com/derlin/snorkel</a>, the pull request is still in review. Use mine for now.</p>
+</div>
+</li>
 </ul>
 </li>
 </ul>
 <h2 id="setting-up-snorkel">Setting up Snorkel</h2>
-<div class="admonition error">
+<div class="admonition warning">
 <p>You need Docker running on your machine. </p>
 </div>
 <p>Snorkel is a docker container allowing you to run Zeppelin locally.</p>
@@ -401,10 +409,8 @@
 <li>On Mac/Linux:
     <div class="codehilite"><pre><span></span>./build-images.sh
 </pre></div></li>
-<li>On Windows (from the command prompt or the powershell):
-    <div class="codehilite"><pre><span></span>cd zeppelin
-docker build . -t sqooba/zeppelin-starter
-cd ..
+<li>On Windows:
+    <div class="codehilite"><pre><span></span>./build-images.cmd
 </pre></div></li>
 </ul>
 </li>
@@ -412,10 +418,10 @@ cd ..
 <p>start zeppelin:</p>
 <ul>
 <li>On Mac/Linux:
-    <div class="codehilite"><pre><span></span>./start-zeppelin.sh
+    <div class="codehilite"><pre><span></span>./zeppelin.sh --start
 </pre></div></li>
 <li>On Windows (from the command prompt or the powershell):
-    <div class="codehilite"><pre><span></span>./start-zeppelin.bat
+    <div class="codehilite"><pre><span></span>./start-zeppelin.cmd
 </pre></div></li>
 </ul>
 </li>
@@ -429,10 +435,10 @@ cd ..
 <p>stop zeppelin:</p>
 <ul>
 <li>On Mac/Linux:
-    <div class="codehilite"><pre><span></span>./stop-zeppelin.sh
+    <div class="codehilite"><pre><span></span>./zeppelin.sh --stop
 </pre></div></li>
 <li>On Windows (from the command prompt or the powershell):
-    <div class="codehilite"><pre><span></span>./stop-zeppelin.bat
+    <div class="codehilite"><pre><span></span>./stop-zeppelin.cmd
 </pre></div></li>
 </ul>
 </li>
