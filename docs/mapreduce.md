@@ -131,16 +131,33 @@ static class WCReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
 
 ### Running the program
 
-* Download [source code] for word count example
-* Compile the code and create a jar
-* We will use the same [data set] which should be already loaded to HDFS
-* Use the following command to execute the job:
+* Download [bible_shakespear](resources/bible_shakes.nopunc.gz){: target="_blank"} data set
+* Decompress and move to HDFS
 
-```${HADOOP_HOME}/bin/hadoop jar <jar-name>  <main-class> <input-path> <output-path>
+```shell
+hdfs dfs -put bible_shakes.nopunc /user/<your_user>
 ```
 
-* Examine the logs
-* Examine the output
+* Download source code for [word count example](resources/wordcount.zip){: target="_blank"}
+* Compile the code and create a jar (You can download this [wordcount.jar](resources/wordcount.jar){: target="_blank"} for testing)
+* To execute a MapReduce job:
+
+
+```shell
+/bin/hadoop jar <jar-name> <main-class> <input-path> <output-path>
+```
+
+* Use the following command to run our example:
+
+```shell
+/bin/hadoop jar wordcount.jar  exascale.info.lab.wordcount.WordCount /user/<your_user>/bible_shakes.nopunc /user/<your_user>/<output_folder>
+```
+
+* Monitor the job status and examine the logs:
+
+[https://hadoop-rm.daplab.ch/cluster](https://hadoop-rm.daplab.ch/cluster){: target="_blank"}
+
+* Examine the output in HDFS
 
 
 ## Implementation Tips
@@ -152,13 +169,48 @@ static class WCReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
 
 ## Bigrams count
 
-* Write a MapReduce program to count the co-occurrences of pairs of words in the [data set]
-* For simplicity, you can use this [code helper] program structure and build upon it
+* Use the [bible_shakespear](resources/bible_shakes.nopunc.gz){: target="_blank"} data set again
+* Write a MapReduce program to count the co-occurrences of pairs of words
+* For simplicity, you can use this [bigrams_Helper.zip](resources/bigrams_Helper.zip){: target="_blank"} program structure and build upon it
 * Monitor the progress of your job
 * Examine the output
 * Use the combiner class to optimize your job
 
+??? Solution
 
+    Mapper class:
+    
+    * First we need to convert the Text value recieved by each map to String[]:
+    ```java
+    public static String[] textToString(Text value) {
+        String text = value.toString();
+        text = text.toLowerCase();
+        text = text.replaceAll("[^a-z]+", " ");
+        text = text.replaceAll("^\\s+", "");
+        StringTokenizer itr = new StringTokenizer(text);
+        ArrayList<String> result = new ArrayList<String>();
+        while (itr.hasMoreTokens())
+            result.add(itr.nextToken());
+        return Arrays.copyOf(result.toArray(),result.size(),String[].class);}
+    ```
+    * Then we can loop over the String[] object and extract bigrams:
+    ```java
+    for(int i = 0; i < Tokens.length - 1; i++) {
+        word.set(Tokens[i] + " " +  Tokens[i+1]);
+        context.write(word, one);}
+    ```
+    
+    Reducer class:
+    
+    * We can use the same reducer as in the word count example, because we need to sum the values of the received keys (in this case the keys emitted by the mappers are bigrams):
+    ```java
+    int sum = 0;
+    for (IntWritable value : values)
+        sum += value.get();
+    result.set(sum);
+    context.write(key, result);
+    ```
+    
 
 
 
