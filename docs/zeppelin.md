@@ -3,7 +3,9 @@ Apache Zeppelin is an online notebook that lets you interact with a HADOOP clust
 In this workshop, we will use Zeppelin to explore data with Spark. 
 
 !!! info ""
-    The full notebook with all the answers can be downloaded [here](resources/hello-zeppelin.json){: target="_blank"}. Just ensure _Batting.csv_ is present in the `data` folder before running it.
+    The full notebook with all the answers can be downloaded [here](resources/hello-zeppelin.json){: target='_blank'}. 
+
+    Just ensure [Batting.csv](resources/Batting.csv){: target="_blank"} is present in the `data` folder before running it.
 
 ## Environment setup
 

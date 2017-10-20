@@ -4,7 +4,7 @@ In this workshop, we will create a search engine for BBC articles using pyspark 
 * [ML guide](https://spark.apache.org/docs/2.1.0/ml-guide.html){: target="_blank"}
 
 !!! info ""
-    The full notebook with all the answers can be downloaded [here](resources/bbc-workshop.json){: target="_blank"}. Just ensure _Batting.csv_ and _QueryEngine.py_ are present in the `data` folder before running it.
+    The full notebook with all the answers can be downloaded [here](resources/bbc-workshop.json){: target="_blank"}. Just ensure [Batting.csv](resources/Batting.csv){: target="_blank"} and [QueryEngine.py](resources/QueryEngine.py){: target="_blank"} are present in the `data` folder before running it.
 
 ## Introduction 
 
