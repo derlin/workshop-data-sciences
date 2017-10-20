@@ -36,6 +36,10 @@ __Day 2__:
     * _practice_: implementing a document search engine using LDA, _Latent Dirichlet Allocation_ (python + pyspark)
 - if there is some time left, a little tour of the DAPLAB
 
+## Slides
+
+* [Spark (google slides)](http://bit.ly/workshop-data-sciences-spark){: target="_blank"}
+
 ## Requirements
 
 For the workshop, you will need the following:

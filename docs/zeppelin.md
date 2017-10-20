@@ -2,6 +2,9 @@ Apache Zeppelin is an online notebook that lets you interact with a HADOOP clust
 
 In this workshop, we will use Zeppelin to explore data with Spark. 
 
+!!! info ""
+    The full notebook with all the answers can be downloaded [here](resources/hello-zeppelin.json){: target="_blank"}. Just ensure _Batting.csv_ is present in the `data` folder before running it.
+
 ## Environment setup
 
 To simplify, we will use a local Zeppelin running on a Docker container on your local machine. 
@@ -177,7 +180,7 @@ Download the [battling.csv](https://raw.githubusercontent.com/maxtoki/baseball_R
 To read CSV data into a _Spark Dataframe_, nothing is more easy:
 
 ```python
-%pysark
+%pyspark
 battingFile = "data/Batting.csv"
 batting = spark.read.csv(battingFile, 
     header=True, mode="DROPMALFORMED", inferSchema=True)
@@ -230,7 +233,7 @@ z.show(statsPerYear)
     In SQL syntax, this query would look like:
 
     ```sql
-    ELECT R as "total runs", H as "total hits", G as "total games"
+    SELECT R as "total runs", H as "total hits", G as "total games"
     FROM batting
     GROUP BY yearID
     ORDER BY yearID
