@@ -649,7 +649,7 @@
 <p>To add a combiner in our word count example, add the following line in the driver code:</p>
 </li>
 </ul>
-<div class="codehilite"><pre><span></span><span class="n">job</span><span class="o">.</span><span class="na">setReducerClass</span><span class="o">(</span><span class="n">WCReducer</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<div class="codehilite"><pre><span></span><span class="n">job</span><span class="o">.</span><span class="na">setCombinerClass</span><span class="o">(</span><span class="n">WCReducer</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 </pre></div>
 
 <h2 id="example-2-bigrams-count">Example 2 - Bigrams count</h2>
@@ -661,8 +661,12 @@
 <li>Examine the output</li>
 <li>Use the combiner class to optimize your job</li>
 </ul>
-<details class="solution"><summary>Solution</summary><p>Mapper class:</p><ul><li>First we need to convert the Text value recieved by each map to String[]:
-<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">textToString</span><span class="o">(</span><span class="n">Text</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+<details class="solution"><summary>Solution</summary><ul><li>There are a number of ways to code this, this is one way:</li></ul><p>In Mapper class:</p><div class="codehilite"><pre><span></span><span class="n">String</span><span class="o">[]</span> <span class="n">Tokens</span> <span class="o">=</span> <span class="n">Bigrams</span><span class="o">.</span><span class="na">textToString</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Tokens</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">word</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Tokens</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span>  <span class="n">Tokens</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]);</span>
+    <span class="n">context</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="n">one</span><span class="o">);}</span>
+</pre></div>
+<ul><li>To convert the Text value recieved by each map to String[]:</li></ul><div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">textToString</span><span class="o">(</span><span class="n">Text</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">();</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;[^a-z]+&quot;</span><span class="o">,</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
@@ -672,11 +676,8 @@
     <span class="k">while</span> <span class="o">(</span><span class="n">itr</span><span class="o">.</span><span class="na">hasMoreTokens</span><span class="o">())</span>
         <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">itr</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
     <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">toArray</span><span class="o">(),</span><span class="n">result</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span><span class="n">String</span><span class="o">[].</span><span class="na">class</span><span class="o">);}</span>
-</pre></div></li><li>Then we can loop over the String[] object and extract bigrams:
-<div class="codehilite"><pre><span></span><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Tokens</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="n">word</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Tokens</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span>  <span class="n">Tokens</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]);</span>
-    <span class="n">context</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="n">one</span><span class="o">);}</span>
-</pre></div></li></ul><p>Reducer class:</p><ul><li>We can use the same reducer as in the word count example, because we need to sum the values of the received keys (in this case the keys emitted by the mappers are bigrams):
+</pre></div>
+<p>In Reducer class:</p><ul><li>We can use the same reducer as in the word count example, because we need to sum the values of the received keys (in this case the keys emitted by the mappers are bigrams):
 <div class="codehilite"><pre><span></span><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 <span class="k">for</span> <span class="o">(</span><span class="n">IntWritable</span> <span class="n">value</span> <span class="o">:</span> <span class="n">values</span><span class="o">)</span>
     <span class="n">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>

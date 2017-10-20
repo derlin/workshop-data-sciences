@@ -531,6 +531,10 @@
                 
                 <p>Apache Zeppelin is an online notebook that lets you interact with a HADOOP cluster (or any other hadoop/spark installation) through many languages and technology backends. </p>
 <p>In this workshop, we will use Zeppelin to explore data with Spark. </p>
+<div class="admonition info">
+<p>The full notebook with all the answers can be downloaded <a href="../resources/hello-zeppelin.json" target="_blank">here</a>. </p>
+<p>Just ensure <a href="../resources/Batting.csv" target="_blank">Batting.csv</a> is present in the <code class="codehilite">data</code> folder before running it.</p>
+</div>
 <h2 id="environment-setup">Environment setup</h2>
 <p>To simplify, we will use a local Zeppelin running on a Docker container on your local machine. </p>
 <details class="info"><summary>What is Docker?</summary><p>Docker is a tool designed to make it easier to create, deploy, and run applications by using <em>containers</em>.</p><p>Containers are a way to package software in a format that can run isolated on a shared operating system. Unlike VMs, containers do not bundle a full operating system - only libraries and settings required to make the software work are needed. This makes for efficient, lightweight, self-contained systems and guarantees that software will always run the same, regardless of where it’s deployed.</p></details><p>By now, you should have Docker running on your machine as well as snorkel set up. Simply start zeppelin (see <a href="..#setting-up-snorkel">how to setup Snorkel ?</a>) and navigate to <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a>.</p>
@@ -788,7 +792,7 @@ $$ \frac{N}{4} * log(t) $$
 <h3 id="loading-the-data">Loading the data</h3>
 <p>Download the <a href="https://raw.githubusercontent.com/maxtoki/baseball_R/master/data/Batting.csv" target="_blank">battling.csv</a> file and save it in <code class="codehilite">snorkel/zeppelin/data</code>. </p>
 <p>To read CSV data into a <em>Spark Dataframe</em>, nothing is more easy:</p>
-<div class="codehilite"><pre><span></span><span class="o">%</span><span class="n">pysark</span>
+<div class="codehilite"><pre><span></span><span class="o">%</span><span class="n">pyspark</span>
 <span class="n">battingFile</span> <span class="o">=</span> <span class="s2">&quot;data/Batting.csv&quot;</span>
 <span class="n">batting</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="n">battingFile</span><span class="p">,</span> 
     <span class="n">header</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;DROPMALFORMED&quot;</span><span class="p">,</span> <span class="n">inferSchema</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -829,7 +833,7 @@ $$ \frac{N}{4} * log(t) $$
 <span class="n">z</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">statsPerYear</span><span class="p">)</span>
 </pre></div>
 
-<details class="info"><summary>SQL equivalent</summary><p>In SQL syntax, this query would look like:</p><div class="codehilite"><pre><span></span><span class="n">ELECT</span> <span class="n">R</span> <span class="k">as</span> <span class="ss">&quot;total runs&quot;</span><span class="p">,</span> <span class="n">H</span> <span class="k">as</span> <span class="ss">&quot;total hits&quot;</span><span class="p">,</span> <span class="k">G</span> <span class="k">as</span> <span class="ss">&quot;total games&quot;</span>
+<details class="info"><summary>SQL equivalent</summary><p>In SQL syntax, this query would look like:</p><div class="codehilite"><pre><span></span><span class="k">SELECT</span> <span class="n">R</span> <span class="k">as</span> <span class="ss">&quot;total runs&quot;</span><span class="p">,</span> <span class="n">H</span> <span class="k">as</span> <span class="ss">&quot;total hits&quot;</span><span class="p">,</span> <span class="k">G</span> <span class="k">as</span> <span class="ss">&quot;total games&quot;</span>
 <span class="k">FROM</span> <span class="n">batting</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">yearID</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">yearID</span>
