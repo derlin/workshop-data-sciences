@@ -5,7 +5,7 @@ It mainly focuses on user commands (uploading and downloading data into HDFS).
 
 ## Resources
 
-While the source of truth for HDFS commands is the code source, the [documentation page describing the `hdfs dfs` commands](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html){:target="_blank"} is really useful.
+While the source of truth for HDFS commands is the code source, the [documentation](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html){:target="_blank"} page describing the `hdfs dfs` commands is really useful.
 
 A good and simpler cheat sheet is also available [here](http://www.dummies.com/how-to/content/hadoop-for-dummies-cheat-sheet.html){:target="_blank"}.
 

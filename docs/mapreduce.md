@@ -205,7 +205,7 @@ job.setOutputValueClass(IntWritable.class);
 * To add a combiner in our word count example, add the following line in the driver code:
 
 ```java
-job.setReducerClass(WCReducer.class);
+job.setCombinerClass(WCReducer.class);
 ```
 
 
@@ -220,9 +220,19 @@ job.setReducerClass(WCReducer.class);
 
 ??? Solution
 
-    Mapper class:
+    * There are a number of ways to code this, this is one way:
     
-    * First we need to convert the Text value recieved by each map to String[]:
+    In Mapper class:
+    
+    ```java
+    String[] Tokens = Bigrams.textToString(value);
+    for(int i = 0; i < Tokens.length - 1; i++) {
+        word.set(Tokens[i] + " " +  Tokens[i+1]);
+        context.write(word, one);}
+    ```
+    
+    * To convert the Text value recieved by each map to String[]:
+    
     ```java
     public static String[] textToString(Text value) {
         String text = value.toString();
@@ -235,14 +245,8 @@ job.setReducerClass(WCReducer.class);
             result.add(itr.nextToken());
         return Arrays.copyOf(result.toArray(),result.size(),String[].class);}
     ```
-    * Then we can loop over the String[] object and extract bigrams:
-    ```java
-    for(int i = 0; i < Tokens.length - 1; i++) {
-        word.set(Tokens[i] + " " +  Tokens[i+1]);
-        context.write(word, one);}
-    ```
     
-    Reducer class:
+    In Reducer class:
     
     * We can use the same reducer as in the word count example, because we need to sum the values of the received keys (in this case the keys emitted by the mappers are bigrams):
     ```java
