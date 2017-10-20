@@ -17,7 +17,6 @@ It will be given in French, with support in English.
 __Day 1__:
 
 - Introduction: Big Data, Hadoop, HDFS, what are they ?
-    * Check out the slides: [Big Data: an Introduction](resources/BigData_ITValley_Workshop.pdf){: target="_blank"}
 - HDFS: filesystem and command line usage
 - MapReduce:
     * _theory_: what is MapReduce ?
@@ -38,7 +37,9 @@ __Day 2__:
 
 ## Slides
 
+* [Big Data (PDF)](resources/BigData_ITValley_Workshop.pdf){: target="_blank"}
 * [Spark (google slides)](http://bit.ly/workshop-data-sciences-spark){: target="_blank"}
+* [LSA (google slides)](http://bit.ly/workshop-data-sciences-lda){: target="_blank"}
 
 ## Requirements
 
